@@ -1,1 +1,51 @@
-ok ceci est un test 
+import tkinter as tk
+
+class PharmaceutiqueApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Application Pharmaceutique")
+        self.geometry("600x400")
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        # Commande 4: Clarté dans l'interface utilisateur
+        label = tk.Label(self, text="Bienvenue dans l'application pharmaceutique", font=("Helvetica", 18))
+        label.pack(pady=20)
+
+        # Commande 6: Compatibilité avec le monde de l'utilisateur
+        self.search_entry = tk.Entry(self, width=40)
+        self.search_entry.pack(pady=10)
+
+        search_button = tk.Button(self, text="Rechercher", command=self.perform_search)
+        search_button.pack()
+
+        # Commande 7: Contrôle utilisateur
+        clear_button = tk.Button(self, text="Effacer", command=self.clear_search)
+        clear_button.pack()
+
+        # Commande 8: Clarté dans les dialogues
+        self.result_label = tk.Label(self, text="", font=("Helvetica", 12))
+        self.result_label.pack(pady=20)
+
+    def perform_search(self):
+        # Commande 1: Connaître l'utilisateur et son contexte
+        keyword = self.search_entry.get()
+
+        # Commande 2: Adaptabilité
+        if keyword:
+            # Simulation de recherche dans une base de données pharmaceutique
+            results = ["Paracétamol", "Ibuprofène", "Aspirine"]
+            # Commande 5: Minimiser la charge cognitive
+            self.result_label.config(text=f"Résultats pour '{keyword}': {', '.join(results)}")
+        else:
+            self.result_label.config(text="Veuillez saisir un terme de recherche")
+
+    def clear_search(self):
+        # Commande 7: Contrôle utilisateur
+        self.search_entry.delete(0, tk.END)
+        self.result_label.config(text="")
+
+if __name__ == "__main__":
+    app = PharmaceutiqueApp()
+    app.mainloop()
