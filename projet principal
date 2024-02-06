@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import tkinter as tk
 #test pour pull
 class PharmaceutiqueApp(tk.Tk):
@@ -5,47 +6,33 @@ class PharmaceutiqueApp(tk.Tk):
         super().__init__()
         self.title("Application Pharmaceutique")
         self.geometry("600x400")
+=======
+from flask import Flask, render_template, request
 
-        self.create_widgets()
+app = Flask(__name__)
+>>>>>>> 594e008b8381b70b451cea980d0a90d57066f2c7
 
-    def create_widgets(self):
-        # Commande 4: Clarté dans l'interface utilisateur
-        label = tk.Label(self, text="Bienvenue dans l'application pharmaceutique", font=("Helvetica", 18))
-        label.pack(pady=20)
+# Base de données de recettes (simulée)
+recipes = [
+    {"name": "Pâtes à la carbonara", "ingredients": ["pâtes", "œufs", "lardons", "parmesan"]},
+    {"name": "Salade César", "ingredients": ["laitue", "poulet", "croûtons", "parmesan", "sauce César"]},
+    {"name": "Pizza Margherita", "ingredients": ["pâte à pizza", "tomates", "mozzarella", "basilic"]}
+]
 
-        # Commande 6: Compatibilité avec le monde de l'utilisateur
-        self.search_entry = tk.Entry(self, width=40)
-        self.search_entry.pack(pady=10)
+def find_recipes(ingredients):
+    matching_recipes = []
+    for recipe in recipes:
+        if all(ingredient in recipe["ingredients"] for ingredient in ingredients):
+            matching_recipes.append(recipe)
+    return matching_recipes
 
-        search_button = tk.Button(self, text="Rechercher", command=self.perform_search)
-        search_button.pack()
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        user_ingredients = request.form.get('ingredients').split(',')
+        matching_recipes = find_recipes(user_ingredients)
+        return render_template('index.html', recipes=matching_recipes)
+    return render_template('index.html', recipes=[])
 
-        # Commande 7: Contrôle utilisateur
-        clear_button = tk.Button(self, text="Effacer", command=self.clear_search)
-        clear_button.pack()
-
-        # Commande 8: Clarté dans les dialogues
-        self.result_label = tk.Label(self, text="", font=("Helvetica", 12))
-        self.result_label.pack(pady=20)
-
-    def perform_search(self):
-        # Commande 1: Connaître l'utilisateur et son contexte
-        keyword = self.search_entry.get()
-
-        # Commande 2: Adaptabilité
-        if keyword:
-            # Simulation de recherche dans une base de données pharmaceutique
-            results = ["Paracétamol", "Ibuprofène", "Aspirine"]
-            # Commande 5: Minimiser la charge cognitive
-            self.result_label.config(text=f"Résultats pour '{keyword}': {', '.join(results)}")
-        else:
-            self.result_label.config(text="Veuillez saisir un terme de recherche")
-
-    def clear_search(self):
-        # Commande 7: Contrôle utilisateur
-        self.search_entry.delete(0, tk.END)
-        self.result_label.config(text="")
-
-if __name__ == "__main__":
-    app = PharmaceutiqueApp()
-    app.mainloop()
+if __name__ == '__main__':
+    app.run(debug=True)
