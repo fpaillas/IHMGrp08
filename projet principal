@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Base de données de recettes (simulée)
+# Recettes idées
 recipes = [
     {"name": "Pâtes à la carbonara", "ingredients": ["pâtes", "œufs", "lardons", "parmesan"]},
     {"name": "Salade César", "ingredients": ["laitue", "poulet", "croûtons", "parmesan", "sauce César"]},
