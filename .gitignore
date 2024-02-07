@@ -1,0 +1,57 @@
+# Fichiers générés par l'interpréteur Python
+__pycache__/
+
+# Fichiers de compilation
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers d'environnement virtuel
+venv/
+env/
+.venv/
+
+# Fichiers de log et de rapports
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers temporaires
+*.tmp
+
+# Fichiers de configuration pour les éditeurs
+.vscode/
+.idea/
+
+# Fichiers de sauvegarde
+*~
+*.bak
+*.swp
+
+# Fichiers de dépendances
+*.pyc
+*.pyo
+*.pyd
+
+# Dossiers spécifiques aux outils
+/.tox/
+/.mypy_cache/
+/.pytest_cache/
+
+# Dossiers générés par l'installation de packages
+/dist/
+/build/
+
+# Fichiers de configuration
+*.ini
+*.cfg
+
+# Fichiers de cache
+__pycache__/
+.cache/
+
+# Fichiers de configuration pour Windows
+Thumbs.db
+Desktop.ini
