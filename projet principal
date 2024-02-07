@@ -12,7 +12,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 >>>>>>> 594e008b8381b70b451cea980d0a90d57066f2c7
 
-# Base de données de recettes (simulée)
+# Recette
 recipes = [
     {"name": "Pâtes à la carbonara", "ingredients": ["pâtes", "œufs", "lardons", "parmesan"]},
     {"name": "Salade César", "ingredients": ["laitue", "poulet", "croûtons", "parmesan", "sauce César"]},
