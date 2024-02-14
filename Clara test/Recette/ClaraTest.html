@@ -15,6 +15,7 @@
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
         <button onclick="afficherRecettes('Pates')">Pâtes</button>
         <button onclick="afficherRecettes('Risotto')">Risotto</button>
+        <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
     </div>    
 
     <div id="recettes-container"></div>
@@ -24,19 +25,19 @@
             { 
               "nom": "Pizza Margherita",
               "categorie": "Pizza",
-              "image": "imgR/pizzaM.jpeg",
+              "image": "Claraimg/pizzaM.jpeg",
               "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"]
             },
             { 
               "nom": "Pâtes Carbonara",
               "categorie": "Pates",
-              "image": "imgR/carbonara.jpeg",
+              "image": "Claraimg/carbonara.jpeg",
               "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"]
             },
             { 
               "nom": "Risotto aux Champignons",
               "categorie": "Risotto",
-              "image": "imgR/rissotoC.jpeg",
+              "image": "Claraimg/rissotoC.jpeg",
               "ingredients": ["riz arborio", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"]
             }
         ];
@@ -56,6 +57,22 @@
                     `;
                     recettesContainer.appendChild(recetteDiv);
                 }
+            });
+        }
+
+        function afficherToutesLesRecettes() {
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            recettes.forEach(recette => {
+                const recetteDiv = document.createElement('div');
+                recetteDiv.classList.add('recette');
+                recetteDiv.innerHTML = `
+                    <h2>${recette.nom}</h2>
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                `;
+                recettesContainer.appendChild(recetteDiv);
             });
         }
 
