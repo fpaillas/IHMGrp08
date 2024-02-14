@@ -127,25 +127,24 @@
             if (recette) {
                 const preparation = recette.preparation;
                 const nom = recette.nom;
-                const win = window.open('', '_blank');
-                win.document.write(`
-                    <html lang="fr">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>${nom} - Préparation</title>
-                    </head>
-                    <body>
-                        <h2>${nom}</h2>
-                        <p>${preparation}</p>
-                        <button onclick="history.back()">Retour</button>
-                    </body>
-                    </html>
-                `);
-                win.document.close();
+
+                // Sélectionne l'élément où tu veux afficher la préparation de la recette
+                const preparationContainer = document.getElementById('preparation-container');
+
+                // Modifie le contenu de cet élément avec les détails de la recette
+                preparationContainer.innerHTML = `
+                    <h2>${nom}</h2>
+                    <p>${preparation}</p>
+                    <button onclick="retourPageAccueil()">Retour</button>
+                `;
             } else {
                 alert("Recette introuvable");
             }
+        }
+
+        function retourPageAccueil() {
+            // Recharge simplement la page pour revenir à l'état initial
+            location.reload();
         }
     </script>
 </body>
