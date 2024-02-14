@@ -34,6 +34,8 @@
   <!-- Les recettes seront affichées ici -->
 </div>
 
+<a href="#" id="linkPates">Pâtes</a>
+
 <script>
   // Base de données de recettes
   var recettes = [
@@ -70,6 +72,25 @@
       <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
     `;
     container.appendChild(divRecette);
+  });
+
+  // Fonction pour afficher uniquement les recettes de pâtes
+  document.getElementById("linkPates").addEventListener("click", function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut du lien
+    container.innerHTML = ''; // Efface les recettes affichées actuellement
+    recettes.filter(function(recette) {
+      return recette.categorie === 'pates';
+    }).forEach(function(recette) {
+      var divRecette = document.createElement("div");
+      divRecette.classList.add("recipe");
+      divRecette.innerHTML = `
+        <img src="${recette.image}" alt="${recette.nom}">
+        <h2>${recette.nom}</h2>
+        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+        <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
+      `;
+      container.appendChild(divRecette);
+    });
   });
 </script>
 
