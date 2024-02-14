@@ -14,11 +14,13 @@
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
         <button onclick="afficherRecettes('Pates')">Pâtes</button>
-        <button onclick="afficherRecettes('Risotto')">Risotto</button>
+        <button onclick="afficherRecettes('Riz')">Riz</button>
         <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
     </div>    
 
     <div id="recettes-container"></div>
+
+    <div id="recette-details"></div>
 
     <script>
         const recettes = [
@@ -26,40 +28,44 @@
               "nom": "Pizza Margherita",
               "categorie": "Pizza",
               "image": "Claraimg/pizzaM.jpeg",
-              "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"]
+              "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
+              "preparation": "Préparation de la pizza Margherita..."
             },
             {
             "nom": "Pizza Quatre Fromages",
             "categorie": "Pizza",
             "image": "Claraimg/pizza_quatre_fromages.jpeg",
-            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"]
+            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
+            "preparation": "Préparation de la pizza Quatre Fromages..."
             },
             { 
               "nom": "Pâtes Carbonara",
               "categorie": "Pates",
               "image": "Claraimg/carbonara.jpeg",
-              "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"]
+              "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
+              "preparation": "Préparation des pâtes Carbonara..."
             },
             { 
               "nom": "Risotto aux Champignons",
               "categorie": "Riz",
               "image": "Claraimg/rissotoC.jpeg",
-              "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"]
+              "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
+              "preparation": "Préparation du risotto aux Champignons..."
             },
             {
             "nom": "Lasagnes",
             "categorie": "Pates",
             "image": "Claraimg/lasagnes.jpeg",
-            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"]
+            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
+            "preparation": "Préparation des lasagnes..."
             },
             {
             "nom": "Riz au Poulet et Légumes",
             "categorie": "Riz",
             "image": "Claraimg/riz_poulet_legumes.jpeg",
-            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"]
+            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
+            "preparation": "Préparation du riz au Poulet et Légumes..."
             }
-
-
         ];
 
         function afficherRecettes(categorie) {
@@ -71,7 +77,7 @@
                     const recetteDiv = document.createElement('div');
                     recetteDiv.classList.add('recette');
                     recetteDiv.innerHTML = `
-                        <h2>${recette.nom}</h2>
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
                         <img src="${recette.image}" alt="${recette.nom}">
                         <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
                     `;
@@ -88,7 +94,7 @@
                 const recetteDiv = document.createElement('div');
                 recetteDiv.classList.add('recette');
                 recetteDiv.innerHTML = `
-                    <h2>${recette.nom}</h2>
+                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
                     <img src="${recette.image}" alt="${recette.nom}">
                     <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
                 `;
@@ -106,13 +112,29 @@
                     const recetteDiv = document.createElement('div');
                     recetteDiv.classList.add('recette');
                     recetteDiv.innerHTML = `
-                        <h2>${recette.nom}</h2>
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
                         <img src="${recette.image}" alt="${recette.nom}">
                         <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
                     `;
                     recettesContainer.appendChild(recetteDiv);
                 }
             });
+        }
+
+        function afficherPreparation(nomRecette) {
+            const recetteDetails = document.getElementById('recette-details');
+            const recette = recettes.find(r => r.nom === nomRecette);
+
+            if (recette) {
+                recetteDetails.innerHTML = `
+                    <h2>${recette.nom}</h2>
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <h3>Préparation:</h3>
+                    <p>${recette.preparation}</p>
+                `;
+            } else {
+                recetteDetails.innerHTML = '<p>Recette introuvable</p>';
+            }
         }
     </script>
 </body>
