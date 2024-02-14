@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
+    </div>
+
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
         <button onclick="afficherRecettes('Pates')">Pâtes</button>
@@ -43,6 +47,25 @@
 
             recettes.forEach(recette => {
                 if (recette.categorie === categorie) {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2>${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                }
+            });
+        }
+
+        function rechercherRecettes() {
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            recettes.forEach(recette => {
+                if (recette.nom.toLowerCase().includes(recherche)) {
                     const recetteDiv = document.createElement('div');
                     recetteDiv.classList.add('recette');
                     recetteDiv.innerHTML = `
