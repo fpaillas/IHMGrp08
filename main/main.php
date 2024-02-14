@@ -2,13 +2,13 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
-    <title>EVENT'O Page d'accueil</title>
+    <title>Homepage</title>
     <link rel="stylesheet" type="text/css" href="../main/main.css"/>
   </head>
   <body>
     <!----------------- entête haut de page ----------------->
-    <iframe src="../header/header.html" width="100%" height="180vw" frameborder="0"></iframe>
-    <iframe src="../menub/menu.html" width="100%" frameborder="0" ></iframe>
+    <<!-- iframe src="../header/header.html" width="100%" height="180vw" frameborder="0"></iframe>
+    <iframe src="../menub/menu.html" width="100%" frameborder="0" ></iframe> -->
     <!----------------- Suggestion du moment (début)----------------->
     <div class="cadre">
       <p>"Suggestion du moment"</p>
