@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="menu.css"/>
-  </head>
-  <body>
-    <!----------------- Menu (début)----------------->
-    <div class="LMenu">
-      <b>
-        <i>
-          <ul>
-            <li>
-              <a href="../menu_page/decoration.php" target="_parent">Végétarien</a>
-            </li>
-            <li>
-              <a href="#" id="linkPates">Pâtes</a>
-            </li>
-            <li>
-              <a href="../menu_page/traiteur.php" target="_parent">Plats au four</a>
-            </li>
-            <li>
-              <a href="../menu_page/transport.php" target="_parent">Régime</a>
-            </li>
-            <li>
-              <a href="../menu_page/salle_de_fete.php" target="_parent">Halal</a>
-            </li>
-            <li>
-              <a href="../menu_page/services.php" target="_parent">Autre idée?</a>
-            </li>  
-          </ul>
-        </i>
-      </b>      
-    </div>   
-    <!----------------- Menu (fin)------------------->
-  </body>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="menu.css"/>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  .recipe {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Base de Données de Recettes</h1>
+
+<!----------------- Menu (début)----------------->
+<div class="LMenu">
+  <b>
+    <i>
+      <ul>
+        <li>
+          <a href="#" class="categorie" data-categorie="vegetarien">Végétarien</a>
+        </li>
+        <li>
+          <a href="#" class="categorie" data-categorie="pates">Pâtes</a>
+        </li>
+        <!-- Ajoutez d'autres catégories ici -->
+      </ul>
+    </i>
+  </b>      
+</div>   
+<!----------------- Menu (fin)------------------->
+
+<div class="container" id="recipeContainer">
+  <!-- Les recettes seront affichées ici -->
+</div>
+
+<script>
+  // Charger les données depuis le fichier JSON
+  fetch('recettes.json')
+    .then(response => response.json())
+    .then(data => {
+      // Afficher toutes les recettes par défaut au chargement de la page
+      afficherRecettes(data);
+      
+      // Fonction pour afficher les recettes d'une catégorie spécifique
+      function afficherRecettes(recettes) {
+        var container = document.getElementById("recipeContainer");
+        container.innerHTML = ''; // Efface les recettes affichées actuellement
+        recettes.forEach(function(recette) {
+          var divRecette = document.createElement("div");
+          divRecette.classList.add("recipe");
+          divRecette.innerHTML = `
+            <img src="${recette.image}" alt="${recette.nom}">
+            <h2>${recette.nom}</h2>
+            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+            <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
+          `;
+          container.appendChild(divRecette);
+        });
+      }
+      
+      // Événement de clic pour chaque catégorie dans le menu
+      var categories = document.querySelectorAll('.categorie');
+      categories.forEach(function(categorie) {
+        categorie.addEventListener('click', function(event) {
+          var selectedCategorie = event.target.dataset.categorie;
+          var filteredRecettes = data.filter(function(recette) {
+            return recette.categorie === selectedCategorie;
+          });
+          afficherRecettes(filteredRecettes);
+        });
+      });
+    })
+    .catch(error => console.error('Erreur lors du chargement des recettes:', error));
+</script>
+
+</body>
 </html>
