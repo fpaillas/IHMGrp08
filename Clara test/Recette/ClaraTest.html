@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recettes</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Ajoute tes styles CSS ici */
+    </style>
 </head>
 <body>
     <div class="search-bar">
@@ -13,7 +15,7 @@
 
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
-        <button onclick="afficherRecettes('Pates')">Pâtes</button>
+        <button onclick="afficherRecettes('Pâtes')">Pâtes</button>
         <button onclick="afficherRecettes('Riz')">Riz</button>
         <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
     </div>    
@@ -38,7 +40,7 @@
             },
             { 
               "nom": "Pâtes Carbonara",
-              "categorie": "Pates",
+              "categorie": "Pâtes",
               "image": "Claraimg/carbonara.jpeg",
               "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
               "preparation": "Préparation des pâtes Carbonara..."
@@ -52,7 +54,7 @@
             },
             {
             "nom": "Lasagnes",
-            "categorie": "Pates",
+            "categorie": "Pâtes",
             "image": "Claraimg/lasagnes.jpeg",
             "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
             "preparation": "Préparation des lasagnes..."
@@ -136,12 +138,7 @@
                     <body>
                         <h2>${nom}</h2>
                         <p>${preparation}</p>
-                        <button onclick="retourPageAccueil()">Retour</button>
-                        <script>
-                            function retourPageAccueil() {
-                                window.close();
-                            }
-                        </script>
+                        <button onclick="win.close()">Retour</button>
                     </body>
                     </html>
                 `);
