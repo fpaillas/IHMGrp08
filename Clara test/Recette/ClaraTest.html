@@ -20,8 +20,6 @@
 
     <div id="recettes-container"></div>
 
-    <div id="recette-details"></div>
-
     <script>
         const recettes = [
             { 
@@ -122,18 +120,28 @@
         }
 
         function afficherPreparation(nomRecette) {
-            const recetteDetails = document.getElementById('recette-details');
             const recette = recettes.find(r => r.nom === nomRecette);
 
             if (recette) {
-                recetteDetails.innerHTML = `
-                    <h2>${recette.nom}</h2>
-                    <img src="${recette.image}" alt="${recette.nom}">
-                    <h3>Préparation:</h3>
-                    <p>${recette.preparation}</p>
-                `;
+                const preparation = recette.preparation;
+                const nom = recette.nom;
+                const win = window.open('', '_blank');
+                win.document.write(`
+                    <html lang="fr">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>${nom} - Préparation</title>
+                    </head>
+                    <body>
+                        <h2>${nom}</h2>
+                        <p>${preparation}</p>
+                    </body>
+                    </html>
+                `);
+                win.document.close();
             } else {
-                recetteDetails.innerHTML = '<p>Recette introuvable</p>';
+                alert("Recette introuvable");
             }
         }
     </script>
