@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base de Données de Recettes</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  .recipe {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Base de Données de Recettes</h1>
+
+<div class="container" id="recipeContainer">
+  <!-- Les recettes seront affichées ici -->
+</div>
+
+<script>
+  // Base de données de recettes
+  var recettes = [
+    { 
+      nom: "Pizza Margherita",
+      categorie: "pizza",
+      image: "pizza.jpg",
+      ingredients: ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"]
+    },
+    { 
+      nom: "Pâtes Carbonara",
+      categorie: "pates",
+      image: "carbonara.jpg",
+      ingredients: ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"]
+    },
+    { 
+      nom: "Risotto aux Champignons",
+      categorie: "riz",
+      image: "risotto.jpg",
+      ingredients: ["riz arborio", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"]
+    },
+    // Ajoutez plus de recettes ici
+  ];
+
+  // Afficher les recettes dans la page
+  var container = document.getElementById("recipeContainer");
+  recettes.forEach(function(recette) {
+    var divRecette = document.createElement("div");
+    divRecette.classList.add("recipe");
+    divRecette.innerHTML = `
+      <img src="${recette.image}" alt="${recette.nom}">
+      <h2>${recette.nom}</h2>
+      <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+      <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
+    `;
+    container.appendChild(divRecette);
+  });
+</script>
+
+</body>
+</html>
