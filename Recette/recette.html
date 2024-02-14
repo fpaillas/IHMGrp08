@@ -37,9 +37,24 @@
 <script>
   // Base de données de recettes
   var recettes = [
-    { nom: "Pizza Margherita", categorie: "pizza", image: "pizzaM.jpeg" },
-    { nom: "Pâtes Carbonara", categorie: "pates", image: "carbonara.jpeg" },
-    { nom: "Risotto aux Champignons", categorie: "riz", image: "risottoC.jpeg" },
+    { 
+      nom: "Pizza Margherita",
+      categorie: "pizza",
+      image: "pizzaM.jpeg",
+      ingredients: ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"]
+    },
+    { 
+      nom: "Pâtes Carbonara",
+      categorie: "pates",
+      image: "carbonara.jpeg",
+      ingredients: ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"]
+    },
+    { 
+      nom: "Risotto aux Champignons",
+      categorie: "riz",
+      image: "risottoC.jpeg",
+      ingredients: ["riz arborio", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"]
+    },
     // Ajoutez plus de recettes ici
   ];
 
@@ -52,6 +67,7 @@
       <img src="${recette.image}" alt="${recette.nom}">
       <h2>${recette.nom}</h2>
       <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+      <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
     `;
     container.appendChild(divRecette);
   });
