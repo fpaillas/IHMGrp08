@@ -1,19 +1,19 @@
 const recettes = [
     { 
       "nom": "Pizza Margherita",
-      "categorie": "pizza",
+      "categorie": "Pizza",
       "image": "imgR/pizzaM.jpeg",
       "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"]
     },
     { 
       "nom": "Pâtes Carbonara",
-      "categorie": "pates",
+      "categorie": "Pates",
       "image": "imgR/carbonara.jpeg",
       "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"]
     },
     { 
       "nom": "Risotto aux Champignons",
-      "categorie": "riz",
+      "categorie": "Riz",
       "image": "imgR/rissotoC.jpeg",
       "ingredients": ["riz arborio", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"]
     }
