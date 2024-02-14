@@ -1,57 +1,33 @@
-# Fichiers générés par l'interpréteur Python
-__pycache__/
+# Dossiers
+node_modules/
+dist/
+.cache/
 
-# Fichiers de compilation
-*.pyc
-*.pyo
-*.pyd
-
-# Fichiers d'environnement virtuel
-venv/
-env/
-.venv/
-
-# Fichiers de log et de rapports
+# Fichiers
 *.log
-*.pot
-*.pyc
-*.pyo
-*.pyd
+*.bak
+*.swp
+Thumbs.db
 
-# Fichiers temporaires
-*.tmp
+# Fichiers d'environnement
+.env
+.env.local
 
-# Fichiers de configuration pour les éditeurs
+# Fichiers de dépendances
+package-lock.json
+yarn.lock
+
+# Fichiers générés par l'utilisateur
+.DS_Store
+.env.local
+
+# Fichiers de configuration spécifiques à l'éditeur
 .vscode/
 .idea/
 
 # Fichiers de sauvegarde
 *~
+*.backup
+*.save
 *.bak
 *.swp
-
-# Fichiers de dépendances
-*.pyc
-*.pyo
-*.pyd
-
-# Dossiers spécifiques aux outils
-/.tox/
-/.mypy_cache/
-/.pytest_cache/
-
-# Dossiers générés par l'installation de packages
-/dist/
-/build/
-
-# Fichiers de configuration
-*.ini
-*.cfg
-
-# Fichiers de cache
-__pycache__/
-.cache/
-
-# Fichiers de configuration pour Windows
-Thumbs.db
-Desktop.ini
