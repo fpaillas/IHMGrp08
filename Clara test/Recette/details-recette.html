@@ -78,10 +78,16 @@
                 </ul>
                 <h3>Préparation :</h3>
                 <p>${recette.preparation}</p>
+                <button onclick="commencerPreparation()">Commencer la préparation</button>
                 <button onclick="retourPageAccueil()">Retour</button>
             `;
         } else {
             alert("Recette introuvable");
+        }
+
+        function commencerPreparation() {
+            // Ajoutez ici le code pour démarrer la préparation de la recette
+            alert("La préparation de la recette commence !");
         }
 
         function retourPageAccueil() {
