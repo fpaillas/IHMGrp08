@@ -66,6 +66,21 @@
         // Recherche de la recette par son nom
         const recette = recettes.find(r => r.nom === nomRecette);
 
+        // Index de l'étape de préparation actuelle
+        let etapePreparationIndex = 0;
+
+        // Affichage de la prochaine étape de préparation
+        function afficherEtapePreparation() {
+            const etape = recette.preparation.split('.')[etapePreparationIndex];
+            if (etape) {
+                alert(etape.trim()); // Afficher l'étape de préparation dans une alerte
+                etapePreparationIndex++;
+            } else {
+                alert("La préparation est terminée !");
+                retourPageAccueil();
+            }
+        }
+
         // Affichage des détails de la recette
         if (recette) {
             const detailsRecette = document.getElementById('details-recette');
@@ -76,22 +91,12 @@
                 <ul>
                     ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
                 </ul>
-                <h3>Préparation :</h3>
-                <p>${recette.preparation}</p>
-                <button onclick="commencerPreparation()">Commencer la préparation</button>
-                <button onclick="retourPageAccueil()">Retour</button>
+                <button onclick="afficherEtapePreparation()">Commencer la préparation</button>
             `;
-        } else {
-            alert("Recette introuvable");
-        }
-
-        function commencerPreparation() {
-            // Ajoutez ici le code pour démarrer la préparation de la recette
-            alert("La préparation de la recette commence !");
         }
 
         function retourPageAccueil() {
-            // Rediriger l'utilisateur vers la page d'accueil
+            // Recharger simplement la page d'accueil
             window.location.href = "ClaraTest.html";
         }
     </script>
