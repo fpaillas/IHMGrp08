@@ -9,6 +9,8 @@
 <body>
     <div id="details-recette-container"></div>
 
+    <script src="Claratest.html"></script>
+
     <script>
         // Récupérer le nom de la recette depuis l'URL (paramètre de requête)
         const params = new URLSearchParams(window.location.search);
@@ -27,6 +29,8 @@
                 <ul>
                     ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
                 </ul>
+                <h3>Préparation:</h3>
+                <p>${recette.preparation}</p>
                 <button onclick="retourPageAccueil()">Retour</button>
             `;
         } else {
