@@ -41,17 +41,20 @@
 
         // Fonction pour récupérer les étapes de préparation de la recette
         function getEtapesPreparation(nomRecette) {
-            // Vous pouvez implémenter cette fonction en fonction de votre logique pour obtenir les étapes de préparation
-            // Par exemple, vous pouvez avoir un tableau d'objets contenant les étapes pour chaque recette
-            // Dans cette implémentation, je vais simplement afficher un message pour chaque étape
-            const etapes = [
-                "Préchauffez le four à 220°C.",
-                "Étalez la pâte à pizza sur une plaque.",
-                "Étalez la sauce tomate sur la pâte.",
-                "Disposez la mozzarella et les feuilles de basilic.",
-                "Enfournez pendant 15-20 minutes."
-            ];
-            return etapes;
+            // Recherche de la recette par son nom
+            const recette = recettes.find(r => r.nom === nomRecette);
+
+            // Vérification si la recette a été trouvée
+            if (recette) {
+                // Séparation de la chaîne de préparation en étapes individuelles
+                const etapes = recette.preparation.split('. ');
+
+                // Retourner les étapes de préparation
+                return etapes;
+            } else {
+                // Si la recette n'est pas trouvée, retourner un tableau vide
+                return [];
+            }
         }
 
         // Fonction pour afficher les détails de la recette sur la page
