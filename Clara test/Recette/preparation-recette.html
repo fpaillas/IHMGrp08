@@ -17,72 +17,42 @@
 <body>
     <h1>Préparation de la recette</h1>
 
-    <div id="details-recette">
-        <!-- Les détails de la recette seront affichés ici -->
+    <div id="ingredients">
+        <!-- La liste des ingrédients sera affichée ici -->
+    </div>
+
+    <div id="etapes-preparation">
+        <!-- Les étapes de la préparation seront affichées ici -->
     </div>
 
     <!-- Boutons -->
-    <button onclick="etapePrecedente()">Étape précédente</button>
-    <button onclick="etapeSuivante()">Étape suivante</button>
+    <button onclick="afficherEtapePrecedente()">Étape précédente</button>
+    <button onclick="afficherEtapeSuivante()">Étape suivante</button>
     <button onclick="retourPageAccueil()">Retour</button>
 
     <script>
+        // Récupérer le nom de la recette à partir de l'URL
+        const params = new URLSearchParams(window.location.search);
+        const nomRecette = params.get('nomRecette');
 
-const recettes = [
-            { 
-              "nom": "Pizza Margherita",
-              "categorie": "Pizza",
-              "image": "Claraimg/pizzaM.jpeg",
-              "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
-              "preparation": "Préparation de la pizza Margherita : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer la mozzarella et les feuilles de basilic. Enfourner pendant 15-20 minutes."
-            },
-            {
-            "nom": "Pizza Quatre Fromages",
-            "categorie": "Pizza",
-            "image": "Claraimg/pizza_quatre_fromages.jpeg",
-            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
-            "preparation": "Préparation de la pizza Quatre Fromages : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer les différents fromages et saupoudrer d'origan. Enfourner pendant 15-20 minutes."
-            },
-            { 
-              "nom": "Pâtes Carbonara",
-              "categorie": "Pâtes",
-              "image": "Claraimg/carbonara.jpeg",
-              "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
-              "preparation": "Préparation des pâtes Carbonara : Cuire les pâtes dans de l'eau bouillante salée. Dans une poêle, faire revenir le guanciale. Battre les œufs avec le parmesan et le poivre. Égoutter les pâtes et les mélanger avec le guanciale. Hors du feu, ajouter le mélange d'œufs et de parmesan. Servir immédiatement."
-            },
-            { 
-              "nom": "Risotto aux Champignons",
-              "categorie": "Riz",
-              "image": "Claraimg/rissotoC.jpeg",
-              "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
-              "preparation": "Préparation du risotto aux Champignons : Faire chauffer le bouillon de poulet. Faire revenir l'oignon dans un peu d'huile. Ajouter le riz et le vin blanc, laisser absorber. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. Ajouter les champignons et le parmesan. Servir chaud."
-            },
-            {
-            "nom": "Lasagnes",
-            "categorie": "Pâtes",
-            "image": "Claraimg/lasagnes.jpeg",
-            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
-            "preparation": "Préparation des lasagnes : Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter la viande hachée et la faire cuire. Ajouter la sauce tomate et laisser mijoter. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. Terminer par une couche de fromage râpé. Enfourner à 180°C pendant 30-40 minutes."
-            },
-            {
-            "nom": "Riz au Poulet et Légumes",
-            "categorie": "Riz",
-            "image": "Claraimg/riz_poulet_legumes.jpeg",
-            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
-            "preparation": "Préparation du riz au Poulet et Légumes : Faire cuire le riz dans le bouillon de poulet. Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter les morceaux de poulet et les légumes coupés en dés. Assaisonner avec le curry en poudre, le sel et le poivre. Ajouter le riz cuit et mélanger. Servir chaud."
-            }
-        ];
-        
-        // Fonction pour récupérer les paramètres de l'URL
-        function getParams() {
-            const params = new URLSearchParams(window.location.search);
-            return params;
-        }
+        // Recherche de la recette par son nom
+        const recette = recettes.find(r => r.nom === nomRecette);
 
-        // Fonction pour récupérer le nom de la recette à partir des paramètres de l'URL
-        function getNomRecette() {
-            const params = getParams();
-            return params.get('nomRecette');
+        // Afficher les détails de la recette
+        if (recette) {
+            const ingredientsDiv = document.getElementById('ingredients');
+            ingredientsDiv.innerHTML = `
+                <h2>Ingrédients :</h2>
+                <ul>
+                    ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                </ul>
+            `;
+
+            const etapesPreparationDiv = document.getElementById('etapes-preparation');
+            etapesPreparationDiv.innerHTML = `
+                <h2>Étapes de préparation :</h2>
+                ${getEtapesPreparation(nomRecette)}
+            `;
         }
 
         // Fonction pour récupérer les étapes de préparation de la recette
@@ -95,78 +65,51 @@ const recettes = [
                 // Séparation de la chaîne de préparation en étapes individuelles
                 const etapes = recette.preparation.split('. ');
 
+                // Création des éléments HTML pour chaque étape
+                const etapesHTML = etapes.map((etape, index) => `<div class="etape-preparation ${index === 0 ? 'active' : ''}" id="etape${index + 1}"><h3>Étape ${index + 1}</h3><p>${etape}</p></div>`).join('');
+
                 // Retourner les étapes de préparation
-                return etapes;
+                return etapesHTML;
             } else {
-                // Si la recette n'est pas trouvée, retourner un tableau vide
-                return [];
+                // Si la recette n'est pas trouvée, retourner un message d'erreur
+                return '<p>Recette introuvable.</p>';
             }
         }
 
-        // Fonction pour afficher les détails de la recette sur la page
-        function afficherDetailsRecette(nomRecette) {
-            const detailsRecette = document.getElementById('details-recette');
-            detailsRecette.innerHTML = `
-                <h2>${nomRecette}</h2>
-                <h3>Étapes de préparation :</h3>
-                <div id="etapes-preparation">
-                    <!-- Les étapes de préparation seront affichées ici -->
-                </div>
-            `;
-            // Récupérer les étapes de préparation de la recette
-            const etapes = getEtapesPreparation(nomRecette);
-            const etapesPreparationDiv = document.getElementById('etapes-preparation');
-            etapes.forEach((etape, index) => {
-                const etapeDiv = document.createElement('div');
-                etapeDiv.classList.add('etape-preparation');
-                etapeDiv.setAttribute('id', `etape${index + 1}`);
-                etapeDiv.innerHTML = `
-                    <h3>Étape ${index + 1}</h3>
-                    <p>${etape}</p>
-                `;
-                etapesPreparationDiv.appendChild(etapeDiv);
-            });
-            // Afficher la première étape par défaut
-            document.getElementById('etape1').classList.add('active');
-        }
-
-        // Fonction pour passer à l'étape suivante
-        function etapeSuivante() {
-            const etapes = document.querySelectorAll('.etape-preparation');
-            etapes.forEach((etape, index) => {
-                if (etape.classList.contains('active')) {
-                    etape.classList.remove('active');
-                    if (index < etapes.length - 1) {
-                        etapes[index + 1].classList.add('active');
-                        return;
-                    }
-                }
-            });
-        }
-
-        // Fonction pour revenir à l'étape précédente
-        function etapePrecedente() {
-            const etapes = document.querySelectorAll('.etape-preparation');
-            for (let i = 0; i < etapes.length; i++) {
-                if (etapes[i].classList.contains('active')) {
-                    etapes[i].classList.remove('active');
-                    if (i > 0) {
-                        etapes[i - 1].classList.add('active');
-                        return;
-                    }
-                }
+        // Fonction pour afficher l'étape suivante de la préparation
+        function afficherEtapeSuivante() {
+            // Récupérer l'ID de l'étape actuellement active
+            const activeEtapeId = document.querySelector('.etape-preparation.active').id;
+            // Récupérer le numéro de l'étape
+            const etapeNumber = parseInt(activeEtapeId.replace('etape', ''));
+            // Masquer l'étape actuelle
+            document.getElementById(activeEtapeId).classList.remove('active');
+            // Afficher l'étape suivante
+            const nextEtapeId = `etape${etapeNumber + 1}`;
+            if (document.getElementById(nextEtapeId)) {
+                document.getElementById(nextEtapeId).classList.add('active');
             }
         }
 
+        // Fonction pour afficher l'étape précédente de la préparation
+        function afficherEtapePrecedente() {
+            // Récupérer l'ID de l'étape actuellement active
+            const activeEtapeId = document.querySelector('.etape-preparation.active').id;
+            // Récupérer le numéro de l'étape
+            const etapeNumber = parseInt(activeEtapeId.replace('etape', ''));
+            // Masquer l'étape actuelle
+            document.getElementById(activeEtapeId).classList.remove('active');
+            // Afficher l'étape précédente
+            const prevEtapeId = `etape${etapeNumber - 1}`;
+            if (document.getElementById(prevEtapeId)) {
+                document.getElementById(prevEtapeId).classList.add('active');
+            }
+        }
 
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
             window.location.href = 'ClaraTest.html';
         }
-
-        // Appeler les fonctions pour afficher les détails de la recette
-        const nomRecette = getNomRecette();
-        afficherDetailsRecette(nomRecette);
     </script>
 </body>
 </html>
