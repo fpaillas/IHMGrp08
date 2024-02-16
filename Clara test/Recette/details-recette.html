@@ -16,27 +16,32 @@
         const params = new URLSearchParams(window.location.search);
         const nomRecette = params.get('nomRecette');
         
-        // Trouver la recette correspondante dans le tableau des recettes
-        const recette = recettes.find(r => r.nom === nomRecette);
-
-        // Afficher les détails de la recette
-        if (recette) {
-            const detailsRecetteContainer = document.getElementById('details-recette-container');
-            detailsRecetteContainer.innerHTML = `
-                <h2>${recette.nom}</h2>
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Ingrédients:</h3>
-                <ul>
-                    ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                </ul>
-                <h3>Préparation:</h3>
-                <p>${recette.preparation}</p>
-                <button onclick="retourPageAccueil()">Retour</button>
-            `;
+        // Vérifier si les données de recettes sont chargées
+        if (typeof recettes === 'undefined') {
+            console.error("Erreur: Les données de recettes ne sont pas chargées.");
         } else {
-            alert("Recette introuvable");
-            // Rediriger l'utilisateur vers la page d'accueil ou une autre page de votre choix
-            window.location.href = "index.html";
+            // Trouver la recette correspondante dans le tableau des recettes
+            const recette = recettes.find(r => r.nom === nomRecette);
+
+            // Afficher les détails de la recette
+            if (recette) {
+                const detailsRecetteContainer = document.getElementById('details-recette-container');
+                detailsRecetteContainer.innerHTML = `
+                    <h2>${recette.nom}</h2>
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <h3>Ingrédients:</h3>
+                    <ul>
+                        ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                    </ul>
+                    <h3>Préparation:</h3>
+                    <p>${recette.preparation}</p>
+                    <button onclick="retourPageAccueil()">Retour</button>
+                `;
+            } else {
+                alert("Recette introuvable");
+                // Rediriger l'utilisateur vers la page d'accueil ou une autre page de votre choix
+                window.location.href = "index.html";
+            }
         }
 
         function retourPageAccueil() {
