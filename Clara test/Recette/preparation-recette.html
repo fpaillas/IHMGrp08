@@ -69,6 +69,9 @@
         // Recherche de la recette par son nom
         const recette = recettes.find(r => r.nom === nomRecette);
 
+        // Index de l'étape actuelle
+        let currentStepIndex = 0;
+
         // Affichage des détails de la recette
         if (recette) {
             const detailsRecette = document.getElementById('details-recette');
@@ -80,9 +83,9 @@
                     ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
                 </ul>
                 <h3>Préparation :</h3>
-                <ol>
-                    ${recette.preparation.split('.').filter(step => step.trim() !== '').map(step => `<li>${step}</li>`).join('')}
-                </ol>
+                <p id="preparation">${recette.preparation.split('.')[currentStepIndex]}</p>
+                <button onclick="etapePrecedente()">Étape précédente</button>
+                <button onclick="etapeSuivante()">Étape suivante</button>
             `;
         }
 
@@ -95,6 +98,18 @@
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
             window.location.href = 'ClaraTest.html';
+        }
+
+        // Fonction pour passer à l'étape suivante
+        function etapeSuivante() {
+            currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('.').length - 1);
+            document.getElementById('preparation').innerText = recette.preparation.split('.')[currentStepIndex];
+        }
+
+        // Fonction pour revenir à l'étape précédente
+        function etapePrecedente() {
+            currentStepIndex = Math.max(currentStepIndex - 1, 0);
+            document.getElementById('preparation').innerText = recette.preparation.split('.')[currentStepIndex];
         }
     </script>
 </body>
