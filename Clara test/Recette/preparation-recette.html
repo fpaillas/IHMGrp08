@@ -34,9 +34,10 @@
                 <h2>${recette.nom}</h2>
                 <img src="${recette.image}" alt="${recette.nom}">
                 <h3>Préparation :</h3>
-                <p id="preparation">${recette.preparation.split('.')[currentStepIndex]}</p>
+                ${recette.preparation.split('\n').map(step => `<p>${step}</p>`).join('')}
             `;
         }
+
 
         // Fonction pour passer à l'étape suivante
         function etapeSuivante() {
