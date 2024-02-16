@@ -3,31 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails de la recette</title>
+    <title>Préparation de la recette</title>
     <style>
         /* Ajoutez vos styles CSS ici */
-        .container {
-            display: flex;
-        }
-        .details {
-            flex: 1;
-        }
-        .preparation {
-            flex: 1;
-            padding-left: 20px;
-        }
     </style>
 </head>
 <body>
-    <h1>Détails de la recette</h1>
+    <h1>Préparation de la recette</h1>
 
-    <div class="container">
-        <div class="details" id="details-recette"></div>
-        <div class="preparation" id="preparation-recette"></div>
-    </div>
+    <div id="preparation-recette"></div>
 
-    <button onclick="commencerPreparation()">Commencer la préparation</button>
-    <button onclick="retourPageAccueil()">Retour</button>
+    <button onclick="etapePrecedente()">Étape précédente</button>
+    <button onclick="etapeSuivante()">Étape suivante</button>
 
     <script>
         // Récupérer le nom de la recette à partir de l'URL
@@ -40,28 +27,27 @@
         // Index de l'étape actuelle
         let currentStepIndex = 0;
 
-        // Affichage des détails de la recette
+        // Affichage des étapes de préparation
         if (recette) {
-            const detailsRecette = document.getElementById('details-recette');
-            detailsRecette.innerHTML = `
+            const preparationRecette = document.getElementById('preparation-recette');
+            preparationRecette.innerHTML = `
                 <h2>${recette.nom}</h2>
                 <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Ingrédients :</h3>
-                <ul>
-                    ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                </ul>
+                <h3>Préparation :</h3>
+                <p id="preparation">${recette.preparation.split('.')[currentStepIndex]}</p>
             `;
         }
 
-        // Fonction pour commencer la préparation
-        function commencerPreparation() {
-            // Rediriger l'utilisateur vers la page de préparation avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `preparation-recette.html?nomRecette=${encodeURIComponent(nomRecette)}`;
+        // Fonction pour passer à l'étape suivante
+        function etapeSuivante() {
+            currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('.').length - 1);
+            document.getElementById('preparation').innerText = recette.preparation.split('.')[currentStepIndex];
         }
 
-        // Fonction pour retourner à la page d'accueil
-        function retourPageAccueil() {
-            window.location.href = 'ClaraTest.html';
+        // Fonction pour revenir à l'étape précédente
+        function etapePrecedente() {
+            currentStepIndex = Math.max(currentStepIndex - 1, 0);
+            document.getElementById('preparation').innerText = recette.preparation.split('.')[currentStepIndex];
         }
     </script>
 </body>
