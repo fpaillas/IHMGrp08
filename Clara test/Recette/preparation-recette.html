@@ -17,49 +17,106 @@
 <body>
     <h1>Préparation de la recette</h1>
 
-    <div id="ingredients">
-        <!-- La liste des ingrédients sera affichée ici -->
-    </div>
-
-    <div class="etape-preparation" id="etape1">
-        <!-- Étape 1 de la préparation -->
-        <h2>Étape 1</h2>
-        <p>Préparation de l'étape 1...</p>
-    </div>
-
-    <div class="etape-preparation" id="etape2">
-        <!-- Étape 2 de la préparation -->
-        <h2>Étape 2</h2>
-        <p>Préparation de l'étape 2...</p>
-    </div>
-
-    <div class="etape-preparation" id="etape3">
-        <!-- Étape 3 de la préparation -->
-        <h2>Étape 3</h2>
-        <p>Préparation de l'étape 3...</p>
+    <div id="details-recette">
+        <!-- Les détails de la recette seront affichés ici -->
     </div>
 
     <!-- Boutons -->
-    <button onclick="afficherEtapeSuivante()">Étape suivante</button>
+    <button onclick="etapePrecedente()">Étape précédente</button>
+    <button onclick="etapeSuivante()">Étape suivante</button>
     <button onclick="retourPageAccueil()">Retour</button>
 
     <script>
-        // Fonction pour afficher l'étape suivante de la préparation
-        function afficherEtapeSuivante() {
-            // Récupérer l'ID de l'étape actuellement active
-            const activeEtapeId = document.querySelector('.etape-preparation.active').id;
-            // Récupérer le numéro de l'étape
-            const etapeNumber = parseInt(activeEtapeId.replace('etape', ''));
-            // Masquer l'étape actuelle
-            document.getElementById(activeEtapeId).classList.remove('active');
-            // Afficher l'étape suivante
-            document.getElementById(`etape${etapeNumber + 1}`).classList.add('active');
+        // Fonction pour récupérer les paramètres de l'URL
+        function getParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params;
+        }
+
+        // Fonction pour récupérer le nom de la recette à partir des paramètres de l'URL
+        function getNomRecette() {
+            const params = getParams();
+            return params.get('nomRecette');
+        }
+
+        // Fonction pour récupérer les étapes de préparation de la recette
+        function getEtapesPreparation(nomRecette) {
+            // Vous pouvez implémenter cette fonction en fonction de votre logique pour obtenir les étapes de préparation
+            // Par exemple, vous pouvez avoir un tableau d'objets contenant les étapes pour chaque recette
+            // Dans cette implémentation, je vais simplement afficher un message pour chaque étape
+            const etapes = [
+                "Préchauffez le four à 220°C.",
+                "Étalez la pâte à pizza sur une plaque.",
+                "Étalez la sauce tomate sur la pâte.",
+                "Disposez la mozzarella et les feuilles de basilic.",
+                "Enfournez pendant 15-20 minutes."
+            ];
+            return etapes;
+        }
+
+        // Fonction pour afficher les détails de la recette sur la page
+        function afficherDetailsRecette(nomRecette) {
+            const detailsRecette = document.getElementById('details-recette');
+            detailsRecette.innerHTML = `
+                <h2>${nomRecette}</h2>
+                <h3>Étapes de préparation :</h3>
+                <div id="etapes-preparation">
+                    <!-- Les étapes de préparation seront affichées ici -->
+                </div>
+            `;
+            // Récupérer les étapes de préparation de la recette
+            const etapes = getEtapesPreparation(nomRecette);
+            const etapesPreparationDiv = document.getElementById('etapes-preparation');
+            etapes.forEach((etape, index) => {
+                const etapeDiv = document.createElement('div');
+                etapeDiv.classList.add('etape-preparation');
+                etapeDiv.setAttribute('id', `etape${index + 1}`);
+                etapeDiv.innerHTML = `
+                    <h3>Étape ${index + 1}</h3>
+                    <p>${etape}</p>
+                `;
+                etapesPreparationDiv.appendChild(etapeDiv);
+            });
+            // Afficher la première étape par défaut
+            document.getElementById('etape1').classList.add('active');
+        }
+
+        // Fonction pour passer à l'étape suivante
+        function etapeSuivante() {
+            const etapes = document.querySelectorAll('.etape-preparation');
+            etapes.forEach((etape, index) => {
+                if (etape.classList.contains('active')) {
+                    etape.classList.remove('active');
+                    if (index < etapes.length - 1) {
+                        etapes[index + 1].classList.add('active');
+                        return;
+                    }
+                }
+            });
+        }
+
+        // Fonction pour revenir à l'étape précédente
+        function etapePrecedente() {
+            const etapes = document.querySelectorAll('.etape-preparation');
+            etapes.forEach((etape, index) => {
+                if (etape.classList.contains('active')) {
+                    etape.classList.remove('active');
+                    if (index > 0) {
+                        etapes[index - 1].classList.add('active');
+                        return;
+                    }
+                }
+            });
         }
 
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
             window.location.href = 'ClaraTest.html';
         }
+
+        // Appeler les fonctions pour afficher les détails de la recette
+        const nomRecette = getNomRecette();
+        afficherDetailsRecette(nomRecette);
     </script>
 </body>
 </html>
