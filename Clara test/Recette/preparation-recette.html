@@ -6,62 +6,30 @@
     <title>Détails de la recette</title>
     <style>
         /* Ajoutez vos styles CSS ici */
+        .container {
+            display: flex;
+        }
+        .details {
+            flex: 1;
+        }
+        .preparation {
+            flex: 1;
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Détails de la recette</h1>
 
-    <div id="details-recette"></div>
+    <div class="container">
+        <div class="details" id="details-recette"></div>
+        <div class="preparation" id="preparation-recette"></div>
+    </div>
 
     <button onclick="commencerPreparation()">Commencer la préparation</button>
     <button onclick="retourPageAccueil()">Retour</button>
 
     <script>
-        const recettes = [
-            { 
-              "nom": "Pizza Margherita",
-              "categorie": "Pizza",
-              "image": "Claraimg/pizzaM.jpeg",
-              "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
-              "preparation": "Préparation de la pizza Margherita : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer la mozzarella et les feuilles de basilic. Enfourner pendant 15-20 minutes."
-            },
-            {
-            "nom": "Pizza Quatre Fromages",
-            "categorie": "Pizza",
-            "image": "Claraimg/pizza_quatre_fromages.jpeg",
-            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
-            "preparation": "Préparation de la pizza Quatre Fromages : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer les différents fromages et saupoudrer d'origan. Enfourner pendant 15-20 minutes."
-            },
-            { 
-              "nom": "Pâtes Carbonara",
-              "categorie": "Pâtes",
-              "image": "Claraimg/carbonara.jpeg",
-              "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
-              "preparation": "Préparation des pâtes Carbonara : Cuire les pâtes dans de l'eau bouillante salée. Dans une poêle, faire revenir le guanciale. Battre les œufs avec le parmesan et le poivre. Égoutter les pâtes et les mélanger avec le guanciale. Hors du feu, ajouter le mélange d'œufs et de parmesan. Servir immédiatement."
-            },
-            { 
-              "nom": "Risotto aux Champignons",
-              "categorie": "Riz",
-              "image": "Claraimg/rissotoC.jpeg",
-              "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
-              "preparation": "Préparation du risotto aux Champignons : Faire chauffer le bouillon de poulet. Faire revenir l'oignon dans un peu d'huile. Ajouter le riz et le vin blanc, laisser absorber. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. Ajouter les champignons et le parmesan. Servir chaud."
-            },
-            {
-            "nom": "Lasagnes",
-            "categorie": "Pâtes",
-            "image": "Claraimg/lasagnes.jpeg",
-            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
-            "preparation": "Préparation des lasagnes : Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter la viande hachée et la faire cuire. Ajouter la sauce tomate et laisser mijoter. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. Terminer par une couche de fromage râpé. Enfourner à 180°C pendant 30-40 minutes."
-            },
-            {
-            "nom": "Riz au Poulet et Légumes",
-            "categorie": "Riz",
-            "image": "Claraimg/riz_poulet_legumes.jpeg",
-            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
-            "preparation": "Préparation du riz au Poulet et Légumes : Faire cuire le riz dans le bouillon de poulet. Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter les morceaux de poulet et les légumes coupés en dés. Assaisonner avec le curry en poudre, le sel et le poivre. Ajouter le riz cuit et mélanger. Servir chaud."
-            }
-        ];
-
         // Récupérer le nom de la recette à partir de l'URL
         const params = new URLSearchParams(window.location.search);
         const nomRecette = params.get('nomRecette');
@@ -82,10 +50,6 @@
                 <ul>
                     ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
                 </ul>
-                <h3>Préparation :</h3>
-                <p id="preparation">${recette.preparation.split('.')[currentStepIndex]}</p>
-                <button onclick="etapePrecedente()">Étape précédente</button>
-                <button onclick="etapeSuivante()">Étape suivante</button>
             `;
         }
 
@@ -98,18 +62,6 @@
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
             window.location.href = 'ClaraTest.html';
-        }
-
-        // Fonction pour passer à l'étape suivante
-        function etapeSuivante() {
-            currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('.').length - 1);
-            document.getElementById('preparation').innerText = recette.preparation.split('.')[currentStepIndex];
-        }
-
-        // Fonction pour revenir à l'étape précédente
-        function etapePrecedente() {
-            currentStepIndex = Math.max(currentStepIndex - 1, 0);
-            document.getElementById('preparation').innerText = recette.preparation.split('.')[currentStepIndex];
         }
     </script>
 </body>
