@@ -16,7 +16,7 @@
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
         <button onclick="afficherRecettes('Pâtes')">Pâtes</button>
-        <button onclick="afficherRecettes('Riz')">Riz</button>
+        <button onclick="afficherRecettes('Riz')"a>Riz</button>
         <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
     </div>    
 
@@ -122,25 +122,12 @@
         }
 
         function afficherPreparation(nomRecette) {
-            const recette = recettes.find(r => r.nom === nomRecette);
-
-            if (recette) {
-                const preparation = recette.preparation;
-                const nom = recette.nom;
-
-                // Sélectionne l'élément où tu veux afficher la préparation de la recette
-                const preparationContainer = document.getElementById('preparation-container');
-
-                // Modifie le contenu de cet élément avec les détails de la recette
-                preparationContainer.innerHTML = `
-                    <h2>${nom}</h2>
-                    <p>${preparation}</p>
-                    <button onclick="retourPageAccueil()">Retour</button>
-                `;
-            } else {
-                alert("Recette introuvable");
-            }
+            // Encodez le nom de la recette pour éviter les problèmes avec les caractères spéciaux dans l'URL
+            const encodedNomRecette = encodeURIComponent(nomRecette);
+            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
+            window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
         }
+
 
         function retourPageAccueil() {
             // Recharge simplement la page pour revenir à l'état initial
