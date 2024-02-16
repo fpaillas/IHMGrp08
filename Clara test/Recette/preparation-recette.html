@@ -40,27 +40,10 @@
     </div>
 
     <!-- Boutons -->
-    <button onclick="commencerPreparation()">Commencer la préparation</button>
     <button onclick="afficherEtapeSuivante()">Étape suivante</button>
     <button onclick="retourPageAccueil()">Retour</button>
 
     <script>
-        // Fonction pour commencer la préparation
-        function commencerPreparation() {
-            // Masquer le bouton "Commencer la préparation"
-            document.querySelector('button').style.display = 'none';
-            // Afficher la liste des ingrédients
-            const ingredientsContainer = document.getElementById('ingredients');
-            ingredientsContainer.innerHTML = `
-                <h2>Ingrédients :</h2>
-                <ul>
-                    <!-- Les ingrédients seront affichés ici -->
-                </ul>
-            `;
-            // Afficher la première étape de la préparation
-            document.getElementById('etape1').classList.add('active');
-        }
-
         // Fonction pour afficher l'étape suivante de la préparation
         function afficherEtapeSuivante() {
             // Récupérer l'ID de l'étape actuellement active
