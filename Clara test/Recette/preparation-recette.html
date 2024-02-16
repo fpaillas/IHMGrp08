@@ -98,16 +98,17 @@
         // Fonction pour revenir à l'étape précédente
         function etapePrecedente() {
             const etapes = document.querySelectorAll('.etape-preparation');
-            etapes.forEach((etape, index) => {
-                if (etape.classList.contains('active')) {
-                    etape.classList.remove('active');
-                    if (index > 0) {
-                        etapes[index - 1].classList.add('active');
+            for (let i = 0; i < etapes.length; i++) {
+                if (etapes[i].classList.contains('active')) {
+                    etapes[i].classList.remove('active');
+                    if (i > 0) {
+                        etapes[i - 1].classList.add('active');
                         return;
                     }
                 }
-            });
+            }
         }
+
 
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
