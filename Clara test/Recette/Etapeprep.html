@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Préparation de la recette</title>
+    <style>
+        /* Ajoutez vos styles CSS ici */
+        .etape-preparation {
+            display: none;
+        }
+        .etape-preparation.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Préparation de la recette</h1>
+
+    <div id="ingredients">
+        <!-- La liste des ingrédients sera affichée ici -->
+    </div>
+
+    <div class="etape-preparation" id="etape1">
+        <!-- Étape 1 de la préparation -->
+        <h2>Étape 1</h2>
+        <p>Préparation de l'étape 1...</p>
+    </div>
+
+    <div class="etape-preparation" id="etape2">
+        <!-- Étape 2 de la préparation -->
+        <h2>Étape 2</h2>
+        <p>Préparation de l'étape 2...</p>
+    </div>
+
+    <div class="etape-preparation" id="etape3">
+        <!-- Étape 3 de la préparation -->
+        <h2>Étape 3</h2>
+        <p>Préparation de l'étape 3...</p>
+    </div>
+
+    <!-- Boutons -->
+    <button onclick="commencerPreparation()">Commencer la préparation</button>
+    <button onclick="afficherEtapeSuivante()">Étape suivante</button>
+    <button onclick="retourPageAccueil()">Retour</button>
+
+    <script>
+        // Fonction pour commencer la préparation
+        function commencerPreparation() {
+            // Masquer le bouton "Commencer la préparation"
+            document.querySelector('button').style.display = 'none';
+            // Afficher la liste des ingrédients
+            const ingredientsContainer = document.getElementById('ingredients');
+            ingredientsContainer.innerHTML = `
+                <h2>Ingrédients :</h2>
+                <ul>
+                    <!-- Les ingrédients seront affichés ici -->
+                </ul>
+            `;
+            // Afficher la première étape de la préparation
+            document.getElementById('etape1').classList.add('active');
+        }
+
+        // Fonction pour afficher l'étape suivante de la préparation
+        function afficherEtapeSuivante() {
+            // Récupérer l'ID de l'étape actuellement active
+            const activeEtapeId = document.querySelector('.etape-preparation.active').id;
+            // Récupérer le numéro de l'étape
+            const etapeNumber = parseInt(activeEtapeId.replace('etape', ''));
+            // Masquer l'étape actuelle
+            document.getElementById(activeEtapeId).classList.remove('active');
+            // Afficher l'étape suivante
+            document.getElementById(`etape${etapeNumber + 1}`).classList.add('active');
+        }
+
+        // Fonction pour retourner à la page d'accueil
+        function retourPageAccueil() {
+            window.location.href = 'ClaraTest.html';
+        }
+    </script>
+</body>
+</html>
