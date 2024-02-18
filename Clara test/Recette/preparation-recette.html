@@ -15,6 +15,7 @@
 
     <button onclick="etapePrecedente()">Étape précédente</button>
     <button onclick="etapeSuivante()">Étape suivante</button>
+    <button onclick="terminer()" id="boutonTerminer" style="display: none;">Terminé</button>
 
     <script>
             const recettes = [
@@ -93,8 +94,10 @@
             }
             if (index === recette.preparation.split('\n').length - 1) {
                 document.getElementById('etapeSuivante').style.display = 'none';
+                document.getElementById('boutonTerminer').style.display = 'inline';
             } else {
                 document.getElementById('etapeSuivante').style.display = 'inline';
+                document.getElementById('boutonTerminer').style.display = 'none';
             }
         }
 
@@ -108,6 +111,11 @@
         function etapePrecedente() {
             currentStepIndex = Math.max(currentStepIndex - 1, 0);
             afficherEtape(currentStepIndex);
+        }
+
+        // Fonction pour terminer la préparation et revenir à la page principale
+        function terminer() {
+            window.location.href = "ClaraTest.html";
         }
     </script>
 </body>
