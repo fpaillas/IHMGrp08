@@ -102,6 +102,7 @@ const params = new URLSearchParams(window.location.search);
             }
         }
 
+
         // Fonction pour passer à l'étape suivante
         function etapeSuivante() {
             currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('\n').length - 1);
