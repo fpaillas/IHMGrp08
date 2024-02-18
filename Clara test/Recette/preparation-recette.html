@@ -72,37 +72,42 @@
         // Index de l'étape actuelle
         let currentStepIndex = 0;
 
-        // Affichage des étapes de préparation
+        // Affichage de la première étape de préparation
         if (recette) {
+            afficherEtape(currentStepIndex);
+        }
+
+        // Fonction pour afficher une étape de préparation
+        function afficherEtape(index) {
             const preparationRecette = document.getElementById('preparation-recette');
             preparationRecette.innerHTML = `
                 <h2>${recette.nom}</h2>
                 <img src="${recette.image}" alt="${recette.nom}">
                 <h3>Préparation :</h3>
-                ${recette.preparation.split('\n').map(step => `<p>${step}</p>`).join('')}
+                <p>${recette.preparation.split('\n')[index]}</p>
             `;
+            if (index === 0) {
+                document.getElementById('etapePrecedente').style.display = 'none';
+            } else {
+                document.getElementById('etapePrecedente').style.display = 'inline';
+            }
+            if (index === recette.preparation.split('\n').length - 1) {
+                document.getElementById('etapeSuivante').style.display = 'none';
+            } else {
+                document.getElementById('etapeSuivante').style.display = 'inline';
+            }
         }
 
         // Fonction pour passer à l'étape suivante
         function etapeSuivante() {
             currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('\n').length - 1);
-            document.getElementById('preparation-recette').innerHTML = `
-                <h2>${recette.nom}</h2>
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Préparation :</h3>
-                <p>${recette.preparation.split('\n')[currentStepIndex]}</p>
-            `;
+            afficherEtape(currentStepIndex);
         }
 
         // Fonction pour revenir à l'étape précédente
         function etapePrecedente() {
             currentStepIndex = Math.max(currentStepIndex - 1, 0);
-            document.getElementById('preparation-recette').innerHTML = `
-                <h2>${recette.nom}</h2>
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Préparation :</h3>
-                <p>${recette.preparation.split('\n')[currentStepIndex]}</p>
-            `;
+            afficherEtape(currentStepIndex);
         }
     </script>
 </body>
