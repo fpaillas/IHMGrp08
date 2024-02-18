@@ -13,6 +13,7 @@
 
     <div id="preparation-recette"></div>
 
+    <button onclick="retourPageAccueil()">Retour à la page d'accueil</button>
     <button onclick="etapePrecedente()">Étape précédente</button>
     <button onclick="etapeSuivante()">Étape suivante</button>
     <button onclick="terminer()" id="boutonTerminer" style="display: none;">Terminé</button>
@@ -115,6 +116,11 @@
 
         // Fonction pour terminer la préparation et revenir à la page principale
         function terminer() {
+            window.location.href = "ClaraTest.html";
+        }
+
+        // Fonction pour retourner à la page d'accueil
+        function retourPageAccueil() {
             window.location.href = "ClaraTest.html";
         }
     </script>
