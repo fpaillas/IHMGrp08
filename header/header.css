@@ -2,6 +2,23 @@ body {
   background-color: rgb(212, 105, 105);
 }
 
+header {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* Pour centrer l'en-tête dans le contenant parent */
+
+  /* Ajoutez des styles spécifiques à votre header ici */
+
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    /* Styles spécifiques pour les fenêtres de 600 pixels de large ou moins */
+    max-width: 100%; /* Lorsque la fenêtre est étroite, utilisez la largeur complète */
+  }
+}
+
+
 table {
   background-color: rgb(212, 105, 105);
   width: 100%;

@@ -1,0 +1,178 @@
+/* Détails des recettes */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#details-recette {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#details-recette img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#details-recette ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#details-recette ul li {
+    margin: 5px 0;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Préparation des recettes */
+#preparation-recette {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#preparation-recette img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#preparation-recette p {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* Base de données des recettes */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  .recipe {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+/* ClaraTest*/
+.search-bar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu button:hover {
+    background-color: #45a049;
+}
+
+.recette {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s ease;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.recette:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+.recette img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/*  FAQ  */
+.faq-header {
+    font-size: 32px; 
+    color: #333; 
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ccc; 
+  }
+  .faq-list {
+    list-style-type: none; 
+    margin: 0;
+    padding: 0;
+  }
+  .faq-list li {
+    padding: 10px 0;
+    margin: 10px 0;
+    border-bottom: 1px solid #eee; 
+  }
+  .faq-list a {
+    text-decoration: none; 
+    color: #333; 
+    font-size: 18px; 
+    display: block; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+  }
+  .faq-list a:hover {
+    padding-left: 8px; 
+    border-left: 3px solid #333; 
+  }
+
+  .answer {
+    display: none;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  table {
+    background-color: rgb(212, 105, 105);
+    width: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: visible;
+    overflow-y: visible;
+  }
