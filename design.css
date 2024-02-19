@@ -35,7 +35,8 @@ header {
   iframe{
     padding: 0;
     margin: 0;
-}
+    width: 100%;
+  }
 
 .maintext {
   width: 80%;
