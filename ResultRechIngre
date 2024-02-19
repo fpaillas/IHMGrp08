@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de Recherche de Recettes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .recipe {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Résultats de Recherche de Recettes</h2>
+
+<form action="#" method="post" id="filterForm">
+    <label>
+        <input type="checkbox" name="ingredients" value="Pate à pizza"> Pate à pizza
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Sauce tomate"> Sauce tomate
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Mozzarella"> Mozzarella
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Basilic"> Basilic
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Spaghetti"> Spaghetti
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Oeufs"> Oeufs
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Guanciale"> Guanciale
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Parmesan"> Parmesan
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Poivre"> Poivre
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Riz"> Riz
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Champignons"> Champignons
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Bouillon de poulet"> Bouillon de poulet
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Oignon"> Oignon
+    </label>
+    <label>
+        <input type="checkbox" name="ingredients" value="Vin blanc"> Vin blanc
+    </label>
+
+    <input type="button" value="Rechercher" onclick="filterRecipes()">
+</form>
+
+<div id="filteredRecipes">
+  <!-- Les recettes filtrées seront affichées ici -->
+</div>
+
+<script>
+  var recettes = [
+    { 
+      nom: "Pizza Margherita",
+      categorie: "pizza",
+      image: "imgR/pizzaM.jpeg",
+      ingredients: ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"]
+    },
+    { 
+      nom: "Pâtes Carbonara",
+      categorie: "pates",
+      image: "imgR/carbonara.jpeg",
+      ingredients: ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"]
+    },
+    { 
+      nom: "Risotto aux Champignons",
+      categorie: "riz",
+      image: "imgR/rissotoC.jpeg",
+      ingredients: ["riz arborio", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"]
+    },
+    // Ajoutez plus de recettes ici
+  ];
+
+  function filterRecipes() {
+    var selectedIngredients = Array.from(document.querySelectorAll('input[name="ingredients"]:checked')).map(input => input.value);
+
+    var filteredRecipes = recettes.filter(function(recette) {
+      return selectedIngredients.every(function(ingredient) {
+        return recette.ingredients.includes(ingredient);
+      });
+    });
+
+    displayFilteredRecipes(filteredRecipes);
+  }
+
+  function displayFilteredRecipes(filteredRecipes) {
+    var container = document.getElementById("filteredRecipes");
+    container.innerHTML = '';
+
+    if (filteredRecipes.length === 0) {
+      container.innerHTML = '<p>Aucune recette ne correspond aux ingrédients sélectionnés.</p>';
+      return;
+    }
+
+    filteredRecipes.forEach(function(recette) {
+      var divRecette = document.createElement("div");
+      divRecette.classList.add("recipe");
+      divRecette.innerHTML = `
+        <img src="${recette.image}" alt="${recette.nom}">
+        <h2>${recette.nom}</h2>
+        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+        <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
+      `;
+      container.appendChild(divRecette);
+    });
+  }
+</script>
+
+</body>
+</html>
