@@ -14,7 +14,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
     background-color: #60b162;
     color: white;
   }
@@ -22,7 +22,7 @@ header {
   
   .logo-image, .menu-image, .ajuster {
     width: 50px; /* Ajustez cette valeur selon vos besoins */
-    height: auto; /* Cela garantit que l'aspect ratio de l'image est conservé */
+    height: auto; 
     margin: 0 10px; /* Ajustez la marge selon vos besoins */
   }
   
@@ -36,6 +36,17 @@ header {
     padding: 0;
     margin: 0;
 }
+
+.maintext {
+  width: 80%;
+  margin: auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 
 /* Détails des recettes */
 body {
@@ -52,6 +63,7 @@ body {
 h1 {
     text-align: center;
     margin-top: 20px;
+    padding: 0;
 }
 
 #details-recette {
