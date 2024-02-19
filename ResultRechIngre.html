@@ -78,8 +78,8 @@
     var urlParams = new URLSearchParams(window.location.search);
     var selectedIngredients = urlParams.getAll('ingredients');
 
-    var filteredRecipes = recettes.filter(function(recette) {
-      return selectedIngredients.some(function(ingredient) {
+    var filteredRecipes = recettes.filter(function (recette) {
+      return selectedIngredients.some(function (ingredient) {
         return recette.ingredients.includes(ingredient);
       });
     });
@@ -96,7 +96,7 @@
       return;
     }
 
-    filteredRecipes.forEach(function(recette) {
+    filteredRecipes.forEach(function (recette) {
       var divRecette = document.createElement("div");
       divRecette.classList.add("recipe");
       divRecette.innerHTML = `
@@ -104,6 +104,7 @@
         <h2>${recette.nom}</h2>
         <p><strong>Catégorie:</strong> ${recette.categorie}</p>
         <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
+        <p><strong>Préparation:</strong> ${recette.preparation.replace(/\n/g, '<br>')}</p>
       `;
       container.appendChild(divRecette);
     });
@@ -112,11 +113,3 @@
   // Call filterRecipes function when the page loads
   filterRecipes();
 </script>
-
-</body>
-</html>
-
-
-
-
-
