@@ -7,8 +7,7 @@
   </head>
   <body>
     <!----------------- entête haut de page ----------------->
-    <iframe src="../header/header.html" width="100%" height="180vw" frameborder="0"></iframe>
-    <iframe src="../menub/menu.html" width="100%" frameborder="0" ></iframe>
+    <iframe src="../header/header.html" width="100%" height="100%" frameborder="0" style="border: none; display: block;"></iframe>
     <!----------------- Suggestion du moment (début)----------------->
     <div class="cadre">
       <p>"Suggestion du moment"</p>
@@ -71,8 +70,12 @@
     <!----------------- Affichage de produit et service (début)----------------->
     <div class="tout">  
       <h1>Pates</h1>   <br>
-      <img src="..//img/testballon"> <br>
-      <p>Details de préparation</p> <br>
+      
+      <p>
+        <img src="./img/testballon.jpg"> <br>
+        Details de préparation
+        test
+      </p> <br>
       <!-- <?php foreach ($stmtt as $row) : ?>
         <form action="../product(fiche)/product.php" method="GET">
           <input type="hidden" name="idProduit" value="<?php echo $row['idProduit']; ?>">

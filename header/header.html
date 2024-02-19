@@ -3,39 +3,36 @@
   <head>
     <meta charset="UTF-8">
     <title>EVENT'O Page d'accueil</title>
-    <link rel="stylesheet" type="text/css" href="header.css"/>
+    <link rel="stylesheet" type="text/css" href="/design.css"/>
   </head>
   <body>
     <!--------------- entête haut de page (début)------------------->
     <header>
-      <table>
-        <tr>
-          <td>
-            <img src="img\menu_lateral.png" class="ajuster">                                          
-          </td>
-          <td>
-            <a href="../cherche/cherche.php" target="_parent">
-              <div class="search-box">
-                <input type="text" name="q" placeholder="Rechercher...">
-                <button type="submit" class="search-button">
-                  <img src="img\loupe.png"> 
-                </button>
-              </div>
-            </a>
-          </td>
-          <td>
-            <a href="../main/main.php" target="_parent">
-              <img src="./img/logo.png" class="logo">
-            </a>  
-          </td>
-          <td>
-            <img src="img\contact.png" class="ajuster">                                        
-          </td>
-        </tr>
-      </table>
+      <div class="logo">
+        <a href="/main/main.html" target="_parent">
+          <img src="./img/logo.png" class="logo-image">
+        </a> 
+      </div>
+      <nav class="menu">
+        <!-- Ajoutez vos liens de menu ici -->
+        <a href="/Clara test/Recette/recette.html" target="_parent">Liste de recettes</a>
+        <a href="/Clara test/Recette/ClaraTest.html" target="_parent">Catégories</a>
+        <a href="/main/FAQ.html" target="_parent">FAQs</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
+      </div>
     </header>
     <!----------------- entête haut de page (fin)----------------->
-    <br>
-    <br>
   </body>
 </html>
+
+
+<!-- <a href="/Clara test/Recette/recette.html" target="_parent">
+  <img src="/header/img/listerecette.png" class="menu-image">
+</a>
+<a href="/Clara test/Recette/ClaraTest.html" target="_parent">
+  <img src="/header/img/recette.png" class="menu-image">
+  <img src="img\contact.png" class="ajuster">
+</a> -->
