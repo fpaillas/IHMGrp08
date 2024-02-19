@@ -1,0 +1,126 @@
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Questions Fréquemment Posées</title>
+    
+    
+    <style>
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; 
+      }
+      .container {
+        width: 60%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff; 
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.05); 
+      }
+      .faq-header {
+        font-size: 32px; 
+        color: #333; 
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #ccc; 
+      }
+      .faq-list {
+        list-style-type: none; 
+        margin: 0;
+        padding: 0;
+      }
+      .faq-list li {
+        padding: 10px 0;
+        margin: 10px 0;
+        border-bottom: 1px solid #eee; 
+      }
+      .faq-list a {
+        text-decoration: none; 
+        color: #333; 
+        font-size: 18px; 
+        display: block; 
+        cursor: pointer; 
+        transition: all 0.3s ease; 
+      }
+      .faq-list a:hover {
+        padding-left: 8px; 
+        border-left: 3px solid #333; 
+      }
+    
+      .answer {
+        display: none;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+      }
+    </style>
+    
+    
+ 
+    
+<style>
+body {
+  background-color: rgb(212, 105, 105);
+}
+
+table {
+  background-color: rgb(212, 105, 105);
+  width: 100%;
+  overflow: auto;
+  margin: 0;
+  padding: 0;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+      <div class="container">
+        <h1 class="faq-header">Frequently asked questions</h1>
+        <ul class="faq-list">
+            <li><a href="javascript:void(0)" data-target="register">Do I have to register to use EVENT'O?</a></li>
+            <li><a href="javascript:void(0)" data-target="infoIncluded">What kind of information is included in EVENT'O?</a></li>
+            <li><a href="javascript:void(0)" data-target="sourceInfo">Can i choose what will be displayed?</a></li>
+        </ul>
+      </div>
+
+      <div id="register" class="answer">
+          <p>Yes, it is not mandatory to register to use EVENT'O. The goal is to make the information available to everyone without any barriers.</p>
+      </div>
+      <div id="infoIncluded" class="answer">
+          <p>EVENT'O provides detailed data on receips, including the .........................</p>
+      </div>
+      <div id="sourceInfo" class="answer">
+          <p>Yes, of course you have the choice to display what you want to see exactely</p>
+      </div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+  var faqLinks = document.querySelectorAll('.faq-list a');
+  faqLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      document.querySelectorAll('.answer').forEach(function (answer) {
+        answer.style.display = 'none';
+      });
+      var target = this.getAttribute('data-target');
+      document.getElementById(target).style.display = 'block';
+    });
+  });
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recettes</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.search-bar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu button:hover {
+    background-color: #45a049;
+}
+
+.recette {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s ease;
+}
+
+.recette:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+}
+
+.recette img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+    </style>
+</head>
+<body>
+    <!----------------- entête haut de page ----------------->
+    <iframe src="/header/header.html" width="100%" height="180vw" frameborder="0"></iframe>
+    <!----------------- entête haut de page ----------------->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
+    </div>
+
+    <div class="menu">
+        <button onclick="afficherRecettes('Pizza')">Pizza</button>
+        <button onclick="afficherRecettes('Pâtes')">Pâtes</button>
+        <button onclick="afficherRecettes('Riz')"a>Riz</button>
+        <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
+    </div>    
+
+    <div id="recettes-container"></div>
+
+    <script>
+        const recettes = [
+            { 
+              "nom": "Pizza Margherita",
+              "categorie": "Pizza",
+              "image": "Claraimg/pizzaM.jpeg",
+              "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
+              "preparation": "Préparation de la pizza Margherita : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer la mozzarella et les feuilles de basilic. Enfourner pendant 15-20 minutes."
+            },
+            {
+            "nom": "Pizza Quatre Fromages",
+            "categorie": "Pizza",
+            "image": "Claraimg/pizza_quatre_fromages.jpeg",
+            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
+            "preparation": "Préparation de la pizza Quatre Fromages : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer les différents fromages et saupoudrer d'origan. Enfourner pendant 15-20 minutes."
+            },
+            { 
+              "nom": "Pâtes Carbonara",
+              "categorie": "Pâtes",
+              "image": "Claraimg/carbonara.jpeg",
+              "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
+              "preparation": "Préparation des pâtes Carbonara : Cuire les pâtes dans de l'eau bouillante salée. Dans une poêle, faire revenir le guanciale. Battre les œufs avec le parmesan et le poivre. Égoutter les pâtes et les mélanger avec le guanciale. Hors du feu, ajouter le mélange d'œufs et de parmesan. Servir immédiatement."
+            },
+            { 
+              "nom": "Risotto aux Champignons",
+              "categorie": "Riz",
+              "image": "Claraimg/rissotoC.jpeg",
+              "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
+              "preparation": "Préparation du risotto aux Champignons : Faire chauffer le bouillon de poulet. Faire revenir l'oignon dans un peu d'huile. Ajouter le riz et le vin blanc, laisser absorber. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. Ajouter les champignons et le parmesan. Servir chaud."
+            },
+            {
+            "nom": "Lasagnes",
+            "categorie": "Pâtes",
+            "image": "Claraimg/lasagnes.jpeg",
+            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
+            "preparation": "Préparation des lasagnes : Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter la viande hachée et la faire cuire. Ajouter la sauce tomate et laisser mijoter. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. Terminer par une couche de fromage râpé. Enfourner à 180°C pendant 30-40 minutes."
+            },
+            {
+            "nom": "Riz au Poulet et Légumes",
+            "categorie": "Riz",
+            "image": "Claraimg/riz_poulet_legumes.jpeg",
+            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
+            "preparation": "Préparation du riz au Poulet et Légumes : Faire cuire le riz dans le bouillon de poulet. Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter les morceaux de poulet et les légumes coupés en dés. Assaisonner avec le curry en poudre, le sel et le poivre. Ajouter le riz cuit et mélanger. Servir chaud."
+            }
+        ];
+
+        function afficherRecettes(categorie) {
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            recettes.forEach(recette => {
+                if (recette.categorie === categorie) {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                }
+            });
+        }
+
+        function afficherToutesLesRecettes() {
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            recettes.forEach(recette => {
+                const recetteDiv = document.createElement('div');
+                recetteDiv.classList.add('recette');
+                recetteDiv.innerHTML = `
+                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                    <img src="${recette.image}" alt="${recette.nom}">
+                `;
+                recettesContainer.appendChild(recetteDiv);
+            });
+        }
+
+        function rechercherRecettes() {
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            recettes.forEach(recette => {
+                if (recette.nom.toLowerCase().includes(recherche)) {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                }
+            });
+        }
+
+        function afficherPreparation(nomRecette) {
+            // Encodez le nom de la recette pour éviter les problèmes avec les caractères spéciaux dans l'URL
+            const encodedNomRecette = encodeURIComponent(nomRecette);
+            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
+            window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
+        }
+
+
+        function retourPageAccueil() {
+            // Recharge simplement la page pour revenir à l'état initial
+            location.reload();
+        }
+    </script>
+</body>
+</html>

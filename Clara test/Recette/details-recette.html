@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la recette</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#details-recette {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#details-recette img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#details-recette ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#details-recette ul li {
+    margin: 5px 0;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+    </style>
+</head>
+<body>
+    <!----------------- entête haut de page ----------------->
+    <iframe src="/header/header.html" width="100%" height="180vw" frameborder="0"></iframe>
+    <!----------------- entête haut de page ----------------->
+    <h1>Détails de la recette</h1>
+
+    <div id="details-recette"></div>
+
+    <button onclick="commencerPreparation()">Commencer la préparation</button>
+    <button onclick="retourPageAccueil()">Retour</button>
+
+    <script>
+        const recettes = [
+            {
+                "nom": "Pizza Margherita",
+                "categorie": "Pizza",
+                "image": "Claraimg/pizzaM.jpeg",
+                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
+                "preparation": "Préparation de la pizza Margherita : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer la mozzarella et les feuilles de basilic. \n5. Enfourner pendant 15-20 minutes."
+            },
+            {
+                "nom": "Pizza Quatre Fromages",
+                "categorie": "Pizza",
+                "image": "Claraimg/pizza_quatre_fromages.jpeg",
+                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
+                "preparation": "Préparation de la pizza Quatre Fromages : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer les différents fromages et saupoudrer d'origan. \n5. Enfourner pendant 15-20 minutes."
+            },
+            {
+                "nom": "Pâtes Carbonara",
+                "categorie": "Pâtes",
+                "image": "Claraimg/carbonara.jpeg",
+                "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
+                "preparation": "Préparation des pâtes Carbonara : \n1. Cuire les pâtes dans de l'eau bouillante salée. \n2. Dans une poêle, faire revenir le guanciale. \n3. Battre les œufs avec le parmesan et le poivre. \n4. Égoutter les pâtes et les mélanger avec le guanciale. \n5. Hors du feu, ajouter le mélange d'œufs et de parmesan. \n6. Servir immédiatement."
+            },
+            {
+                "nom": "Risotto aux Champignons",
+                "categorie": "Riz",
+                "image": "Claraimg/rissotoC.jpeg",
+                "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
+                "preparation": "Préparation du risotto aux Champignons : \n1. Faire chauffer le bouillon de poulet. \n2. Faire revenir l'oignon dans un peu d'huile. \n3. Ajouter le riz et le vin blanc, laisser absorber. \n4. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. \n5. Ajouter les champignons et le parmesan. \n6. Servir chaud."
+            },
+            {
+                "nom": "Lasagnes",
+                "categorie": "Pâtes",
+                "image": "Claraimg/lasagnes.jpeg",
+                "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
+                "preparation": "Préparation des lasagnes : \n1. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n2. Ajouter la viande hachée et la faire cuire. \n3. Ajouter la sauce tomate et laisser mijoter. \n4. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. \n5. Terminer par une couche de fromage râpé. \n6. Enfourner à 180°C pendant 30-40 minutes."
+            },
+            {
+                "nom": "Riz au Poulet et Légumes",
+                "categorie": "Riz",
+                "image": "Claraimg/riz_poulet_legumes.jpeg",
+                "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
+                "preparation": "Préparation du riz au Poulet et Légumes : \n1. Faire cuire le riz dans le bouillon de poulet. \n2. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n3. Ajouter les morceaux de poulet et les légumes coupés en dés. \n4. Assaisonner avec le curry en poudre, le sel et le poivre. \n5. Ajouter le riz cuit et mélanger. \n6. Servir chaud."
+            }
+        ];
+
+
+        // Récupérer le nom de la recette à partir de l'URL
+        const params = new URLSearchParams(window.location.search);
+        const nomRecette = params.get('nomRecette');
+
+        // Recherche de la recette par son nom
+        const recette = recettes.find(r => r.nom === nomRecette);
+
+        // Affichage des détails de la recette
+        if (recette) {
+            const detailsRecette = document.getElementById('details-recette');
+            detailsRecette.innerHTML = `
+                <h2>${recette.nom}</h2>
+                <img src="${recette.image}" alt="${recette.nom}">
+                <h3>Ingrédients :</h3>
+                <ul>
+                    ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // Fonction pour commencer la préparation
+        function commencerPreparation() {
+            // Rediriger l'utilisateur vers la page de préparation avec le nom de la recette en tant que paramètre de requête
+            window.location.href = `preparation-recette.html?nomRecette=${encodeURIComponent(nomRecette)}`;
+        }
+
+        // Fonction pour retourner à la page d'accueil
+        function retourPageAccueil() {
+            window.location.href = 'ClaraTest.html';
+        }
+    </script>
+</body>
+</html>
