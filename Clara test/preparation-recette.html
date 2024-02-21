@@ -123,8 +123,13 @@ const params = new URLSearchParams(window.location.search);
 
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
-            window.history.back();
+    // Affiche un message d'alerte et demande confirmation avant de naviguer
+        const confirmation = confirm("Êtes-vous sûr de vouloir retourner à la page d'accueil ? Avez-vous bien validé toutes les étapes ?");
+        if (confirmation) {
+        // Si l'utilisateur confirme, alors navigue vers la page précédente
+        window.history.back();
         }
+}
     </script>
 </body>
 </html>
