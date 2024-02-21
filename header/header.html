@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>EVENT'O Page d'accueil</title>
     <link rel="stylesheet" type="text/css" href="../design.css"/>
-</head>
-<body>
+  </head>
+  <body>
     <!--------------- entête haut de page (début)------------------->
     <header>
       <div class="logo">
         <a href="../main/main.html" target="_parent">
           <img src="./img/logo.png" class="logo-image">
         </a> 
-      </div>
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
       </div>
       <nav class="menu">
         <!-- Ajoutez vos liens de menu ici -->
@@ -23,13 +20,16 @@
         <a href="../RechIngre.html" target="_parent">Ingredients</a>
         <a href="../main/FAQ.html" target="_parent">FAQs</a>
       </nav>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
+      </div>
     </header>
     <!----------------- entête haut de page (fin)----------------->
 
     <div id="recipeContainer"></div>
 
     <script>
-        const recettes = [
+      const recettes = [
             {
                 "nom": "Pizza Margherita",
                 "categorie": "Pizza",
@@ -101,5 +101,5 @@
 
     </script>
   
-</body>
+  </body>
 </html>
