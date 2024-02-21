@@ -102,9 +102,68 @@
                     <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                 `;
                 container.appendChild(divRecette);
-            });
-        }
 
+
+    // Fonction pour afficher toutes les recettes
+    function afficherToutesLesRecettes() {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
+
+
+        recettes.forEach(recette => {
+            const divRecette = document.createElement("div");
+            divRecette.classList.add("recipe");
+            divRecette.innerHTML = `
+                <img src="${recette.image}" alt="${recette.nom}">
+                <h2>${recette.nom}</h2>
+                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+            `;
+            container.appendChild(divRecette);
+        });
+    }
+
+            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
+            
+            if (recettesTrouvees.length === 0) {
+                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
+            } else {
+                recettesTrouvees.forEach(recette => {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                });
+            }
+        
+
+
+    // Fonction pour rechercher des recettes
+    function rechercherRecettes() {
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
+            
+            if (recettesTrouvees.length === 0) {
+                recettesContainer.innerHTML = '<p>Attention! acunne recette trouvé a ce nom, vouz pouvez essayer avec une autre recette.</p>';
+            } else {
+                recettesTrouvees.forEach(recette => {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                });
+            }
+        }
         // Fonction pour rechercher des recettes
         function rechercherRecettes() {
             const recherche = document.getElementById('searchInput').value.toLowerCase();
