@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
-    
     <!----------------- entête haut de page ----------------->
     <iframe src="../header/header.html" frameborder="0"></iframe>
     <!----------------- entête haut de page ----------------->
@@ -18,138 +17,120 @@
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
         <button onclick="afficherRecettes('Pâtes')">Pâtes</button>
-        <button onclick="afficherRecettes('Riz')"a>Riz</button>
+        <button onclick="afficherRecettes('Riz')">Riz</button>
         <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
     </div>    
 
-    <div id="recettes-container"></div>
+    <div id="recipeContainer"></div>
 
     <script>
         const recettes = [
-            { 
-              "nom": "Pizza Margherita",
-              "categorie": "Pizza",
-              "image": "Claraimg/pizzaM.jpeg",
-              "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
-              "preparation": "Préparation de la pizza Margherita : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer la mozzarella et les feuilles de basilic. Enfourner pendant 15-20 minutes."
+            {
+                "nom": "Pizza Margherita",
+                "categorie": "Pizza",
+                "image": "Claraimg/pizzaM.jpeg",
+                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
+                "preparation": "Préparation de la pizza Margherita : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer la mozzarella et les feuilles de basilic. \n5. Enfourner pendant 15-20 minutes."
             },
             {
-            "nom": "Pizza Quatre Fromages",
-            "categorie": "Pizza",
-            "image": "Claraimg/pizza_quatre_fromages.jpeg",
-            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
-            "preparation": "Préparation de la pizza Quatre Fromages : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer les différents fromages et saupoudrer d'origan. Enfourner pendant 15-20 minutes."
-            },
-            { 
-              "nom": "Pâtes Carbonara",
-              "categorie": "Pâtes",
-              "image": "Claraimg/carbonara.jpeg",
-              "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
-              "preparation": "Préparation des pâtes Carbonara : Cuire les pâtes dans de l'eau bouillante salée. Dans une poêle, faire revenir le guanciale. Battre les œufs avec le parmesan et le poivre. Égoutter les pâtes et les mélanger avec le guanciale. Hors du feu, ajouter le mélange d'œufs et de parmesan. Servir immédiatement."
-            },
-            { 
-              "nom": "Risotto aux Champignons",
-              "categorie": "Riz",
-              "image": "Claraimg/rissotoC.jpeg",
-              "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
-              "preparation": "Préparation du risotto aux Champignons : Faire chauffer le bouillon de poulet. Faire revenir l'oignon dans un peu d'huile. Ajouter le riz et le vin blanc, laisser absorber. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. Ajouter les champignons et le parmesan. Servir chaud."
+                "nom": "Pizza Quatre Fromages",
+                "categorie": "Pizza",
+                "image": "Claraimg/pizza_quatre_fromages.jpeg",
+                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
+                "preparation": "Préparation de la pizza Quatre Fromages : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer les différents fromages et saupoudrer d'origan. \n5. Enfourner pendant 15-20 minutes."
             },
             {
-            "nom": "Lasagnes",
-            "categorie": "Pâtes",
-            "image": "Claraimg/lasagnes.jpeg",
-            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
-            "preparation": "Préparation des lasagnes : Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter la viande hachée et la faire cuire. Ajouter la sauce tomate et laisser mijoter. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. Terminer par une couche de fromage râpé. Enfourner à 180°C pendant 30-40 minutes."
+                "nom": "Pâtes Carbonara",
+                "categorie": "Pâtes",
+                "image": "Claraimg/carbonara.jpeg",
+                "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
+                "preparation": "Préparation des pâtes Carbonara : \n1. Cuire les pâtes dans de l'eau bouillante salée. \n2. Dans une poêle, faire revenir le guanciale. \n3. Battre les œufs avec le parmesan et le poivre. \n4. Égoutter les pâtes et les mélanger avec le guanciale. \n5. Hors du feu, ajouter le mélange d'œufs et de parmesan. \n6. Servir immédiatement."
             },
             {
-            "nom": "Riz au Poulet et Légumes",
-            "categorie": "Riz",
-            "image": "Claraimg/riz_poulet_legumes.jpeg",
-            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
-            "preparation": "Préparation du riz au Poulet et Légumes : Faire cuire le riz dans le bouillon de poulet. Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter les morceaux de poulet et les légumes coupés en dés. Assaisonner avec le curry en poudre, le sel et le poivre. Ajouter le riz cuit et mélanger. Servir chaud."
+                "nom": "Risotto aux Champignons",
+                "categorie": "Riz",
+                "image": "Claraimg/rissotoC.jpeg",
+                "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
+                "preparation": "Préparation du risotto aux Champignons : \n1. Faire chauffer le bouillon de poulet. \n2. Faire revenir l'oignon dans un peu d'huile. \n3. Ajouter le riz et le vin blanc, laisser absorber. \n4. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. \n5. Ajouter les champignons et le parmesan. \n6. Servir chaud."
+            },
+            {
+                "nom": "Lasagnes",
+                "categorie": "Pâtes",
+                "image": "Claraimg/lasagnes.jpeg",
+                "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
+                "preparation": "Préparation des lasagnes : \n1. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n2. Ajouter la viande hachée et la faire cuire. \n3. Ajouter la sauce tomate et laisser mijoter. \n4. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. \n5. Terminer par une couche de fromage râpé. \n6. Enfourner à 180°C pendant 30-40 minutes."
+            },
+            {
+                "nom": "Riz au Poulet et Légumes",
+                "categorie": "Riz",
+                "image": "Claraimg/riz_poulet_legumes.jpeg",
+                "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
+                "preparation": "Préparation du riz au Poulet et Légumes : \n1. Faire cuire le riz dans le bouillon de poulet. \n2. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n3. Ajouter les morceaux de poulet et les légumes coupés en dés. \n4. Assaisonner avec le curry en poudre, le sel et le poivre. \n5. Ajouter le riz cuit et mélanger. \n6. Servir chaud."
             }
         ];
 
         // Fonction pour afficher les recettes en fonction de la catégorie
-    function afficherRecettes(categorie) {
-        const container = document.getElementById("recipeContainer");
-        container.innerHTML = '';
+        function afficherRecettes(categorie) {
+            const container = document.getElementById("recipeContainer");
+            container.innerHTML = '';
 
-        recettes.forEach(recette => {
-            if (recette.categorie === categorie) {
+            recettes.forEach(recette => {
+                if (recette.categorie === categorie) {
+                    const divRecette = document.createElement("div");
+                    divRecette.classList.add("recipe");
+                    divRecette.innerHTML = `
+                        <a href="preparation-recette.html?nomRecette=${encodeURIComponent(recette.nom)}">
+                            <img src="${recette.image}" alt="${recette.nom}">
+                            <h2>${recette.nom}</h2>
+                            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                        </a>
+                    `;
+                    container.appendChild(divRecette);
+                }
+            });
+        }
+
+        // Fonction pour afficher toutes les recettes
+        function afficherToutesLesRecettes() {
+            const container = document.getElementById("recipeContainer");
+            container.innerHTML = '';
+
+            recettes.forEach(recette => {
                 const divRecette = document.createElement("div");
                 divRecette.classList.add("recipe");
                 divRecette.innerHTML = `
-                    <img src="${recette.image}" alt="${recette.nom}">
-                    <h2>${recette.nom}</h2>
-                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                    <a href="preparation-recette.html?nomRecette=${encodeURIComponent(recette.nom)}">
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <h2>${recette.nom}</h2>
+                        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                    </a>
                 `;
                 container.appendChild(divRecette);
-            }
-        });
-    }
-
-    // Fonction pour afficher toutes les recettes
-    function afficherToutesLesRecettes() {
-        const container = document.getElementById("recipeContainer");
-        container.innerHTML = '';
-
-
-        recettes.forEach(recette => {
-            const divRecette = document.createElement("div");
-            divRecette.classList.add("recipe");
-            divRecette.innerHTML = `
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h2>${recette.nom}</h2>
-                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-            `;
-            container.appendChild(divRecette);
-        });
-    }
-
-            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
-            
-            if (recettesTrouvees.length === 0) {
-                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
-            } else {
-                recettesTrouvees.forEach(recette => {
-                    const recetteDiv = document.createElement('div');
-                    recetteDiv.classList.add('recette');
-                    recetteDiv.innerHTML = `
-                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
-                        <img src="${recette.image}" alt="${recette.nom}">
-                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
-                    `;
-                    recettesContainer.appendChild(recetteDiv);
-                });
-            }
-        
-
-
-    // Fonction pour rechercher des recettes
-    function rechercherRecettes() {
-            const recherche = document.getElementById('searchInput').value.toLowerCase();
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
-
-            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
-            
-            if (recettesTrouvees.length === 0) {
-                recettesContainer.innerHTML = '<p>Attention! acunne recette trouvé a ce nom, vouz pouvez essayer avec une autre recette.</p>';
-            } else {
-                recettesTrouvees.forEach(recette => {
-                    const recetteDiv = document.createElement('div');
-                    recetteDiv.classList.add('recette');
-                    recetteDiv.innerHTML = `
-                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
-                        <img src="${recette.image}" alt="${recette.nom}">
-                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
-                    `;
-                    recettesContainer.appendChild(recetteDiv);
-                });
-            }
+            });
         }
-</script>
+
+        // Fonction pour rechercher des recettes
+        function rechercherRecettes() {
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const container = document.getElementById("recipeContainer");
+            container.innerHTML = '';
+
+            recettes.forEach(recette => {
+                if (recette.nom.toLowerCase().includes(recherche)) {
+                    const divRecette = document.createElement("div");
+                    divRecette.classList.add("recipe");
+                    divRecette.innerHTML = `
+                        <a href="preparation-recette.html?nomRecette=${encodeURIComponent(recette.nom)}">
+                            <img src="${recette.image}" alt="${recette.nom}">
+                            <h2>${recette.nom}</h2>
+                            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                        </a>
+                    `;
+                    container.appendChild(divRecette);
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
