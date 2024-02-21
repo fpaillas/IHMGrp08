@@ -150,7 +150,7 @@
             const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
             
             if (recettesTrouvees.length === 0) {
-                recettesContainer.innerHTML = '<p>Attention! acunne recette trouvé a ce nom, vouz pouvez essayer avec une autre recette.</p>';
+                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
             } else {
                 recettesTrouvees.forEach(recette => {
                     const recetteDiv = document.createElement('div');
@@ -164,25 +164,7 @@
                 });
             }
         }
-        // Fonction pour rechercher des recettes
-        function rechercherRecettes() {
-            const recherche = document.getElementById('searchInput').value.toLowerCase();
-            const container = document.getElementById("recipeContainer");
-            container.innerHTML = '';
-
-            recettes.forEach(recette => {
-                if (recette.nom.toLowerCase().includes(recherche)) {
-                    const divRecette = document.createElement("div");
-                    divRecette.classList.add("recipe");
-                    divRecette.innerHTML = `
-                        <img src="${recette.image}" alt="${recette.nom}">
-                        <h2>${recette.nom}</h2>
-                        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-                    `;
-                    container.appendChild(divRecette);
-                }
-            });
-        }
+        
     </script>
 
 </body>
