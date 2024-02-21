@@ -19,20 +19,37 @@
             <input type="checkbox" name="categories" value="Riz"> Riz
         </label>
         <label>
-            <input type="checkbox" name="categories" value="With Meat"> With Meat
+            <input type="checkbox" name="categories" value="With Meat" onchange="deselectVegetarian()"> Avec viande
         </label>
         <label>
-            <input type="checkbox" name="categories" value="Veggie"> Veggie
+            <input type="checkbox" name="categories" value="Vegetarian" onchange="deselectWithMeat()"> Végétarien
         </label>
         <label>
-            <input type="checkbox" name="categories" value="Light"> Light
+            <input type="checkbox" name="categories" value="Light"> Léger
         </label>
         <label>
             <input type="checkbox" name="categories" value="Entrée"> Entrée
         </label>
+        
         <!-- Ajoutez d'autres cases à cocher pour les catégories suivantes selon vos besoins -->
 
         <input type="submit" value="Rechercher">
     </form>
+
+    <script>
+        // Fonction pour désélectionner automatiquement "With Meat" lorsque "Vegetarian" est sélectionné
+        function deselectVegetarian() {
+            if (document.querySelector('input[name="categories"][value="Vegetarian"]').checked) {
+                document.querySelector('input[name="categories"][value="With Meat"]').checked = false;
+            }
+        }
+
+        // Fonction pour désélectionner automatiquement "Vegetarian" lorsque "With Meat" est sélectionné
+        function deselectWithMeat() {
+            if (document.querySelector('input[name="categories"][value="With Meat"]').checked) {
+                document.querySelector('input[name="categories"][value="Vegetarian"]').checked = false;
+            }
+        }
+    </script>
 </body>
 </html>
