@@ -105,6 +105,13 @@
           <p>Yes, of course you have the choice to display what you want to see exactely</p>
       </div>
 
+      <div id="noMatchFeedback" style="display:none; color:red; text-align:center; margin-top:20px;">
+        La question que vous avez posée n'existe pas. Vous pouvez <a href="contact.html">nous contacter</a> pour plus d'informations.
+    </div>    
+  
+  <button onclick="showFeedbackDialog()">Retour à la page d'accueil</button>
+
+
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -125,6 +132,21 @@ document.addEventListener('DOMContentLoaded', function () {
 function retourPageAccueil() {
             window.location.href = "main.html";
         }
+
+
+
+    function retourPageAccueil() {
+    var userResponse = confirm("Avez-vous trouvé une réponse à votre question ?");
+    if (userResponse) {
+        // L'utilisateur a trouvé sa réponse, procéder à la redirection vers la page d'accueil
+        window.location.href = "main.html";
+    } else 
+        alert("Nous sommes désolés que vous n'ayez pas trouvé ce que vous cherchiez. Vous pouvez rester sur la page FAQ pour chercher d'autres réponses, ou nous contacter directement pour plus d'aide.");
+
+        
+    }
+
+
 
 </script>
 

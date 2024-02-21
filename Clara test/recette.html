@@ -16,6 +16,7 @@
   <!-- Les recettes seront affichées ici -->
 </div>
 
+
 <script>
     const recettes = [
         { 
@@ -84,6 +85,18 @@
         // Vous pouvez personnaliser cette fonction pour afficher les détails de la recette comme vous le souhaitez
         console.log(recette);
     }
+
+
+  if (container.innerHTML === '') {
+    container.innerHTML = '<p>Aucune recette trouvée pour cette catégorie.</p>';
+}
+  
+
+
+
+
+
+  
 </script>
 
 </body>
