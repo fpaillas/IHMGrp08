@@ -50,11 +50,13 @@ header {
 
 .recipe-container {
   display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .recipe-column {
-  flex: 1; /* Pour que les colonnes occupent un espace équivalent */
-  padding: 10px; /* Ajustez selon vos besoins */
+  flex: 1; 
+  padding: 10px; 
 }
 
 .recipe-link {
@@ -63,20 +65,20 @@ header {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  text-decoration: none; /* Supprime le soulignement du lien */
-  padding: 10px; /* Ajustez selon vos besoins */
-  background-color: #4CAF50; /* Couleur de fond du bouton */
-  border: none; /* Supprime les bordures par défaut */
-  border-radius: 5px; /* Arrondi les coins du bouton */
+  text-decoration: none; 
+  padding: 10px; 
+  background-color: #4CAF50; 
+  border: none; 
+  border-radius: 5px; 
 }
 
 .recipe-link img {
-  width: 50px; /* Ajustez la taille de l'image selon vos besoins */
-  margin-bottom: 5px; /* Ajoute un espace entre l'image et le texte */
+  width: 50px; 
+  margin-bottom: 5px; 
 }
 
 .recipe-link span {
-  color: #000000; /* Couleur du texte */
+  color: #000000; 
 }
 
 
