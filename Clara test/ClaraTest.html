@@ -113,7 +113,6 @@
                     recetteDiv.innerHTML = `
                         <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
                         <img src="${recette.image}" alt="${recette.nom}">
-                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
                     `;
                     recettesContainer.appendChild(recetteDiv);
                 }
