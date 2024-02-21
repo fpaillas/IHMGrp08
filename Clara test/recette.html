@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recettes</title>
+<link rel="stylesheet" type="text/css" href="../design.css">
+</head>
+<body>
+<!----------------- entête haut de page ----------------->
+<iframe src="../header/header.html" frameborder="0"></iframe>
+<!----------------- entête haut de page ----------------->
+<h1>Recettes</h1>
+
+<div class="container" id="recipeContainer">
+  <!-- Les recettes seront affichées ici -->
+</div>
+
+
+<script>
+    const recettes = [
+        { 
+          "nom": "Pizza Margherita",
+          "categorie": "Pizza",
+          "image": "Claraimg/pizzaM.jpeg",
+          "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
+          "preparation": "Préparation de la pizza Margherita : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer la mozzarella et les feuilles de basilic. Enfourner pendant 15-20 minutes."
+        },
+        {
+        "nom": "Pizza Quatre Fromages",
+        "categorie": "Pizza",
+        "image": "Claraimg/pizza_quatre_fromages.jpeg",
+        "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
+        "preparation": "Préparation de la pizza Quatre Fromages : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer les différents fromages et saupoudrer d'origan. Enfourner pendant 15-20 minutes."
+        },
+        { 
+          "nom": "Pâtes Carbonara",
+          "categorie": "Pâtes",
+          "image": "Claraimg/carbonara.jpeg",
+          "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
+          "preparation": "Préparation des pâtes Carbonara : Cuire les pâtes dans de l'eau bouillante salée. Dans une poêle, faire revenir le guanciale. Battre les œufs avec le parmesan et le poivre. Égoutter les pâtes et les mélanger avec le guanciale. Hors du feu, ajouter le mélange d'œufs et de parmesan. Servir immédiatement."
+        },
+        { 
+          "nom": "Risotto aux Champignons",
+          "categorie": "Riz",
+          "image": "Claraimg/rissotoC.jpeg",
+          "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
+          "preparation": "Préparation du risotto aux Champignons : Faire chauffer le bouillon de poulet. Faire revenir l'oignon dans un peu d'huile. Ajouter le riz et le vin blanc, laisser absorber. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. Ajouter les champignons et le parmesan. Servir chaud."
+        },
+        {
+        "nom": "Lasagnes",
+        "categorie": "Pâtes",
+        "image": "Claraimg/lasagnes.jpeg",
+        "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
+        "preparation": "Préparation des lasagnes : Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter la viande hachée et la faire cuire. Ajouter la sauce tomate et laisser mijoter. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. Terminer par une couche de fromage râpé. Enfourner à 180°C pendant 30-40 minutes."
+        },
+        {
+        "nom": "Riz au Poulet et Légumes",
+        "categorie": "Riz",
+        "image": "Claraimg/riz_poulet_legumes.jpeg",
+        "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
+        "preparation": "Préparation du riz au Poulet et Légumes : Faire cuire le riz dans le bouillon de poulet. Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter les morceaux de poulet et les légumes coupés en dés. Assaisonner avec le curry en poudre, le sel et le poivre. Ajouter le riz cuit et mélanger. Servir chaud."
+        }
+    ];
+
+    // Afficher les recettes dans la page
+    const container = document.getElementById("recipeContainer");
+    recettes.forEach(recette => {
+        const divRecette = document.createElement("div");
+        divRecette.classList.add("recipe");
+        divRecette.innerHTML = `
+            <img src="${recette.image}" alt="${recette.nom}">
+            <h2>${recette.nom}</h2>
+            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+        `;
+        // Ajouter un gestionnaire d'événements de clic à chaque recette
+        divRecette.addEventListener('click', function() {
+            afficherDetailsRecette(recette);
+        });
+        container.appendChild(divRecette);
+    });
+
+    // Fonction pour afficher les détails de la recette
+    function afficherDetailsRecette(recette) {
+        // Vous pouvez personnaliser cette fonction pour afficher les détails de la recette comme vous le souhaitez
+        console.log(recette);
+    }
+
+
+  if (container.innerHTML === '') {
+    container.innerHTML = '<p>Aucune recette trouvée pour cette catégorie.</p>';
+}
+  
+
+
+
+
+
+  
+</script>
+
+</body>
+</html>

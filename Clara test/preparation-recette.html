@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Préparation de la recette</title>
-    <link rel="stylesheet" type="text/css" href="/design.css">
+    <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
     <!----------------- entête haut de page ----------------->
-    <iframe src="/header/header.html" frameborder="0"></iframe>
+    <iframe src="../header/header.html" frameborder="0"></iframe>
     <!----------------- entête haut de page ----------------->
     <h1>Préparation de la recette</h1>
 
@@ -123,7 +123,7 @@ const params = new URLSearchParams(window.location.search);
 
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
-            window.location.href = "ClaraTest.html";
+            window.history.back();
         }
     </script>
 </body>

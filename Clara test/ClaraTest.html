@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recettes</title>
-    <link rel="stylesheet" type="text/css" href="/design.css">
+    <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
+    
     <!----------------- entête haut de page ----------------->
-    <iframe src="/header/header.html" frameborder="0"></iframe>
+    <iframe src="../header/header.html" frameborder="0"></iframe>
     <!----------------- entête haut de page ----------------->
     <div class="search-bar">
         <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
@@ -69,45 +70,49 @@
             }
         ];
 
-        function afficherRecettes(categorie) {
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
+        // Fonction pour afficher les recettes en fonction de la catégorie
+    function afficherRecettes(categorie) {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
-            recettes.forEach(recette => {
-                if (recette.categorie === categorie) {
-                    const recetteDiv = document.createElement('div');
-                    recetteDiv.classList.add('recette');
-                    recetteDiv.innerHTML = `
-                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
-                        <img src="${recette.image}" alt="${recette.nom}">
-                    `;
-                    recettesContainer.appendChild(recetteDiv);
-                }
-            });
-        }
-
-        function afficherToutesLesRecettes() {
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
-
-            recettes.forEach(recette => {
-                const recetteDiv = document.createElement('div');
-                recetteDiv.classList.add('recette');
-                recetteDiv.innerHTML = `
-                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+        recettes.forEach(recette => {
+            if (recette.categorie === categorie) {
+                const divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
                     <img src="${recette.image}" alt="${recette.nom}">
+                    <h2>${recette.nom}</h2>
+                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                 `;
-                recettesContainer.appendChild(recetteDiv);
-            });
-        }
+                container.appendChild(divRecette);
+            }
+        });
+    }
 
-        function rechercherRecettes() {
-            const recherche = document.getElementById('searchInput').value.toLowerCase();
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
+    // Fonction pour afficher toutes les recettes
+    function afficherToutesLesRecettes() {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
-            recettes.forEach(recette => {
-                if (recette.nom.toLowerCase().includes(recherche)) {
+
+        recettes.forEach(recette => {
+            const divRecette = document.createElement("div");
+            divRecette.classList.add("recipe");
+            divRecette.innerHTML = `
+                <img src="${recette.image}" alt="${recette.nom}">
+                <h2>${recette.nom}</h2>
+                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+            `;
+            container.appendChild(divRecette);
+        });
+    }
+
+            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
+            
+            if (recettesTrouvees.length === 0) {
+                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
+            } else {
+                recettesTrouvees.forEach(recette => {
                     const recetteDiv = document.createElement('div');
                     recetteDiv.classList.add('recette');
                     recetteDiv.innerHTML = `
@@ -116,22 +121,35 @@
                         <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
                     `;
                     recettesContainer.appendChild(recetteDiv);
-                }
-            });
-        }
-
-        function afficherPreparation(nomRecette) {
-            // Encodez le nom de la recette pour éviter les problèmes avec les caractères spéciaux dans l'URL
-            const encodedNomRecette = encodeURIComponent(nomRecette);
-            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
-        }
+                });
+            }
+        
 
 
-        function retourPageAccueil() {
-            // Recharge simplement la page pour revenir à l'état initial
-            location.reload();
+    // Fonction pour rechercher des recettes
+    function rechercherRecettes() {
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
+
+            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
+            
+            if (recettesTrouvees.length === 0) {
+                recettesContainer.innerHTML = '<p>Attention! acunne recette trouvé a ce nom, vouz pouvez essayer avec une autre recette.</p>';
+            } else {
+                recettesTrouvees.forEach(recette => {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                });
+            }
         }
-    </script>
+</script>
+
 </body>
 </html>

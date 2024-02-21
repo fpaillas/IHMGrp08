@@ -5,27 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultats de Recherche de Recettes</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .recipe {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../design.css"/>
 </head>
 <body>
-  
+    <!----------------- entête haut de page ----------------->
+    <iframe src="../header/header.html" frameborder="0"></iframe>
 
 <h2>Résultats de Recherche de Recettes</h2>
 
 <div id="filteredRecipes">
   <!-- Les recettes filtrées seront affichées ici -->
 </div>
+<button onclick="goBack()">Retour</button>
 
 <script>
   var recettes = [
@@ -75,41 +66,45 @@
   ];
 
   function filterRecipes() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var selectedIngredients = urlParams.getAll('ingredients');
+            var urlParams = new URLSearchParams(window.location.search);
+            var selectedIngredients = urlParams.getAll('ingredients');
 
-    var filteredRecipes = recettes.filter(function (recette) {
-      return selectedIngredients.some(function (ingredient) {
-        return recette.ingredients.includes(ingredient);
-      });
-    });
+            var filteredRecipes = recettes.filter(function (recette) {
+                return selectedIngredients.some(function (ingredient) {
+                    return recette.ingredients.includes(ingredient);
+                });
+            });
 
-    displayFilteredRecipes(filteredRecipes);
-  }
+            displayFilteredRecipes(filteredRecipes);
+        }
 
-  function displayFilteredRecipes(filteredRecipes) {
-    var container = document.getElementById("filteredRecipes");
-    container.innerHTML = '';
+        function displayFilteredRecipes(filteredRecipes) {
+            var container = document.getElementById("filteredRecipes");
+            container.innerHTML = '';
 
-    if (filteredRecipes.length === 0) {
-      container.innerHTML = '<p>Aucune recette ne correspond aux ingrédients sélectionnés.</p>';
-      return;
-    }
+            if (filteredRecipes.length === 0) {
+                container.innerHTML = '<p>Aucune recette ne correspond aux ingrédients sélectionnés.</p>';
+                return;
+            }
 
-    filteredRecipes.forEach(function (recette) {
-      var divRecette = document.createElement("div");
-      divRecette.classList.add("recipe");
-      divRecette.innerHTML = `
-        <img src="${recette.image}" alt="${recette.nom}">
-        <h2>${recette.nom}</h2>
-        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-        <p><strong>Ingrédients:</strong> ${recette.ingredients.join(', ')}</p>
-        <p><strong>Préparation:</strong> ${recette.preparation.replace(/\n/g, '<br>')}</p>
-      `;
-      container.appendChild(divRecette);
-    });
-  }
+            filteredRecipes.forEach(function (recette) {
+                var divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
+                    <a href="Clara%20test/details-recette.html?nomRecette=${encodeURIComponent(recette.nom)}"> <!-- Link to details page -->
+                        <h2>${recette.nom}</h2>
+                    </a>
+                `;
+                container.appendChild(divRecette);
+            });
+        }
 
-  // Call filterRecipes function when the page loads
-  filterRecipes();
-</script>
+        function goBack() {
+            window.history.back();
+        }
+
+        // Call filterRecipes function when the page loads
+        filterRecipes();
+    </script>
+</body>
+</html>

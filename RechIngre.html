@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sélection d'ingrédients</title>
-    <link rel="stylesheet" type="text/css" href="/design.css"/>
+    <title>Select your ingredients</title>
+    <link rel="stylesheet" type="text/css" href="../design.css"/>
 </head>
 <body>
-
-<h2>Sélectionnez vos ingrédients :</h2>
+<!----------------- entête haut de page ----------------->
+<iframe src="../header/header.html" frameborder="0"></iframe>
+<h2>Select your ingredients :</h2>
 
 <form action="ResultRechIngre.html" method="get">
     <!-- Use method "post" to include selected ingredients in the form data -->
@@ -104,8 +105,13 @@
     </label>
   
     <!-- Add other ingredient checkboxes as needed -->
+    <button onclick="goBack()">Retour</button>
     <input type="submit" value="Valider la sélection">
 </form>
-
+<script>
+function goBack() {
+    window.history.back();
+  }
+</script>
 </body>
 </html>
