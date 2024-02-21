@@ -16,6 +16,7 @@
   <!-- Les recettes seront affichées ici -->
 </div>
 
+
 <script>
     const recettes = [
         { 
@@ -125,6 +126,18 @@
         // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
         window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
     }
+
+
+  if (container.innerHTML === '') {
+    container.innerHTML = '<p>Aucune recette trouvée pour cette catégorie.</p>';
+}
+  
+
+
+
+
+
+  
 </script>
 
 </body>

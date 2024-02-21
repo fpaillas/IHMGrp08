@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
+    
     <!----------------- entête haut de page ----------------->
     <iframe src="../header/header.html" frameborder="0"></iframe>
     <!----------------- entête haut de page ----------------->
@@ -93,6 +94,7 @@
         const container = document.getElementById("recipeContainer");
         container.innerHTML = '';
 
+
         recettes.forEach(recette => {
             const divRecette = document.createElement("div");
             divRecette.classList.add("recipe");
@@ -105,25 +107,48 @@
         });
     }
 
+            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
+            
+            if (recettesTrouvees.length === 0) {
+                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
+            } else {
+                recettesTrouvees.forEach(recette => {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                });
+            }
+        
+
+
     // Fonction pour rechercher des recettes
     function rechercherRecettes() {
-        const recherche = document.getElementById('searchInput').value.toLowerCase();
-        const container = document.getElementById("recipeContainer");
-        container.innerHTML = '';
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const recettesContainer = document.getElementById('recettes-container');
+            recettesContainer.innerHTML = '';
 
-        recettes.forEach(recette => {
-            if (recette.nom.toLowerCase().includes(recherche)) {
-                const divRecette = document.createElement("div");
-                divRecette.classList.add("recipe");
-                divRecette.innerHTML = `
-                    <img src="${recette.image}" alt="${recette.nom}">
-                    <h2>${recette.nom}</h2>
-                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-                `;
-                container.appendChild(divRecette);
+            const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
+            
+            if (recettesTrouvees.length === 0) {
+                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
+            } else {
+                recettesTrouvees.forEach(recette => {
+                    const recetteDiv = document.createElement('div');
+                    recetteDiv.classList.add('recette');
+                    recetteDiv.innerHTML = `
+                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <p>Ingrédients: ${recette.ingredients.join(', ')}</p>
+                    `;
+                    recettesContainer.appendChild(recetteDiv);
+                });
             }
-        });
-    }
+        }
 </script>
 
 </body>
