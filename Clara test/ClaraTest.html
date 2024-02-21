@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
-    
     <!----------------- entête haut de page ----------------->
     <iframe src="../header/header.html" frameborder="0"></iframe>
     <!----------------- entête haut de page ----------------->
@@ -18,11 +17,11 @@
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
         <button onclick="afficherRecettes('Pâtes')">Pâtes</button>
-        <button onclick="afficherRecettes('Riz')"a>Riz</button>
+        <button onclick="afficherRecettes('Riz')">Riz</button>
         <button onclick="afficherToutesLesRecettes()">Toutes les recettes</button>
     </div>    
 
-    <div id="recettes-container"></div>
+    <div id="recipeContainer"></div>
 
     <script>
         const recettes = [
@@ -71,12 +70,30 @@
         ];
 
         // Fonction pour afficher les recettes en fonction de la catégorie
-    function afficherRecettes(categorie) {
-        const container = document.getElementById("recipeContainer");
-        container.innerHTML = '';
+        function afficherRecettes(categorie) {
+            const container = document.getElementById("recipeContainer");
+            container.innerHTML = '';
 
-        recettes.forEach(recette => {
-            if (recette.categorie === categorie) {
+            recettes.forEach(recette => {
+                if (recette.categorie === categorie) {
+                    const divRecette = document.createElement("div");
+                    divRecette.classList.add("recipe");
+                    divRecette.innerHTML = `
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <h2>${recette.nom}</h2>
+                        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                    `;
+                    container.appendChild(divRecette);
+                }
+            });
+        }
+
+        // Fonction pour afficher toutes les recettes
+        function afficherToutesLesRecettes() {
+            const container = document.getElementById("recipeContainer");
+            container.innerHTML = '';
+
+            recettes.forEach(recette => {
                 const divRecette = document.createElement("div");
                 divRecette.classList.add("recipe");
                 divRecette.innerHTML = `
@@ -85,9 +102,7 @@
                     <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                 `;
                 container.appendChild(divRecette);
-            }
-        });
-    }
+
 
     // Fonction pour afficher toutes les recettes
     function afficherToutesLesRecettes() {
@@ -149,7 +164,26 @@
                 });
             }
         }
-</script>
+        // Fonction pour rechercher des recettes
+        function rechercherRecettes() {
+            const recherche = document.getElementById('searchInput').value.toLowerCase();
+            const container = document.getElementById("recipeContainer");
+            container.innerHTML = '';
+
+            recettes.forEach(recette => {
+                if (recette.nom.toLowerCase().includes(recherche)) {
+                    const divRecette = document.createElement("div");
+                    divRecette.classList.add("recipe");
+                    divRecette.innerHTML = `
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <h2>${recette.nom}</h2>
+                        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                    `;
+                    container.appendChild(divRecette);
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
