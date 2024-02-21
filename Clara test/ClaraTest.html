@@ -85,6 +85,10 @@
                             <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                         </a>
                     `;
+                    // Ajouter un gestionnaire d'événements de clic à chaque recette
+                    divRecette.addEventListener('click', function() {
+                        afficherDetailsRecette(recette);
+                    });
                     container.appendChild(divRecette);
                 }
             });
@@ -105,6 +109,10 @@
                         <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                     </a>
                 `;
+                // Ajouter un gestionnaire d'événements de clic à chaque recette
+                divRecette.addEventListener('click', function() {
+                    afficherDetailsRecette(recette);
+                });
                 container.appendChild(divRecette);
             });
         }
@@ -126,9 +134,19 @@
                             <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                         </a>
                     `;
+                    // Ajouter un gestionnaire d'événements de clic à chaque recette
+                    divRecette.addEventListener('click', function() {
+                        afficherDetailsRecette(recette);
+                    });
                     container.appendChild(divRecette);
                 }
             });
+        }
+
+        // Fonction pour afficher les détails de la recette
+        function afficherDetailsRecette(recette) {
+            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
+            window.location.href = `details-recette.html?nomRecette=${encodeURIComponent(recette.nom)}`;
         }
     </script>
 
