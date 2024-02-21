@@ -69,68 +69,62 @@
             }
         ];
 
-        function afficherRecettes(categorie) {
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
+        // Fonction pour afficher les recettes en fonction de la catégorie
+    function afficherRecettes(categorie) {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
-            recettes.forEach(recette => {
-                if (recette.categorie === categorie) {
-                    const recetteDiv = document.createElement('div');
-                    recetteDiv.classList.add('recette');
-                    recetteDiv.innerHTML = `
-                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
-                        <img src="${recette.image}" alt="${recette.nom}">
-                    `;
-                    recettesContainer.appendChild(recetteDiv);
-                }
-            });
-        }
-
-        function afficherToutesLesRecettes() {
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
-
-            recettes.forEach(recette => {
-                const recetteDiv = document.createElement('div');
-                recetteDiv.classList.add('recette');
-                recetteDiv.innerHTML = `
-                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+        recettes.forEach(recette => {
+            if (recette.categorie === categorie) {
+                const divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
                     <img src="${recette.image}" alt="${recette.nom}">
+                    <h2>${recette.nom}</h2>
+                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                 `;
-                recettesContainer.appendChild(recetteDiv);
-            });
-        }
+                container.appendChild(divRecette);
+            }
+        });
+    }
 
-        function rechercherRecettes() {
-            const recherche = document.getElementById('searchInput').value.toLowerCase();
-            const recettesContainer = document.getElementById('recettes-container');
-            recettesContainer.innerHTML = '';
+    // Fonction pour afficher toutes les recettes
+    function afficherToutesLesRecettes() {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
-            recettes.forEach(recette => {
-                if (recette.nom.toLowerCase().includes(recherche)) {
-                    const recetteDiv = document.createElement('div');
-                    recetteDiv.classList.add('recette');
-                    recetteDiv.innerHTML = `
-                        <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
-                        <img src="${recette.image}" alt="${recette.nom}">
-                    `;
-                    recettesContainer.appendChild(recetteDiv);
-                }
-            });
-        }
+        recettes.forEach(recette => {
+            const divRecette = document.createElement("div");
+            divRecette.classList.add("recipe");
+            divRecette.innerHTML = `
+                <img src="${recette.image}" alt="${recette.nom}">
+                <h2>${recette.nom}</h2>
+                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+            `;
+            container.appendChild(divRecette);
+        });
+    }
 
-        function afficherPreparation(nomRecette) {
-            // Encodez le nom de la recette pour éviter les problèmes avec les caractères spéciaux dans l'URL
-            const encodedNomRecette = encodeURIComponent(nomRecette);
-            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
-        }
+    // Fonction pour rechercher des recettes
+    function rechercherRecettes() {
+        const recherche = document.getElementById('searchInput').value.toLowerCase();
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
+        recettes.forEach(recette => {
+            if (recette.nom.toLowerCase().includes(recherche)) {
+                const divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <h2>${recette.nom}</h2>
+                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                `;
+                container.appendChild(divRecette);
+            }
+        });
+    }
+</script>
 
-        function retourPageAccueil() {
-            // Recharge simplement la page pour revenir à l'état initial
-            location.reload();
-        }
-    </script>
 </body>
 </html>

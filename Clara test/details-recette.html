@@ -12,7 +12,7 @@
     <!----------------- entête haut de page ----------------->
     <h1>Détails de la recette</h1>
 
-    <div id="details-recette"></div>
+    <div class="container" id="details-recette">
 
     <button onclick="commencerPreparation()">Commencer la préparation</button>
     <button onclick="retourPageAccueil()">Retour</button>
@@ -64,36 +64,70 @@
         ];
 
 
-        // Récupérer le nom de la recette à partir de l'URL
-        const params = new URLSearchParams(window.location.search);
-        const nomRecette = params.get('nomRecette');
+        // Fonction pour afficher les recettes en fonction de la catégorie
+    function afficherRecettes(categorie) {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
-        // Recherche de la recette par son nom
-        const recette = recettes.find(r => r.nom === nomRecette);
+        recettes.forEach(recette => {
+            if (recette.categorie === categorie) {
+                const divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                `;
+                container.appendChild(divRecette);
+            }
+        });
+    }
 
-        // Affichage des détails de la recette
-        if (recette) {
-            const detailsRecette = document.getElementById('details-recette');
-            detailsRecette.innerHTML = `
-                <h2>${recette.nom}</h2>
+    // Fonction pour afficher toutes les recettes
+    function afficherToutesLesRecettes() {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
+
+        recettes.forEach(recette => {
+            const divRecette = document.createElement("div");
+            divRecette.classList.add("recipe");
+            divRecette.innerHTML = `
                 <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Ingrédients :</h3>
-                <ul>
-                    ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
-                </ul>
+                <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
             `;
-        }
+            container.appendChild(divRecette);
+        });
+    }
 
-        // Fonction pour commencer la préparation
-        function commencerPreparation() {
-            // Rediriger l'utilisateur vers la page de préparation avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `preparation-recette.html?nomRecette=${encodeURIComponent(nomRecette)}`;
-        }
+    // Fonction pour rechercher des recettes
+    function rechercherRecettes() {
+        const recherche = document.getElementById('searchInput').value.toLowerCase();
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
 
-        // Fonction pour retourner à la page d'accueil
-        function retourPageAccueil() {
-            window.location.href = 'ClaraTest.html';
-        }
-    </script>
+        recettes.forEach(recette => {
+            if (recette.nom.toLowerCase().includes(recherche)) {
+                const divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                `;
+                container.appendChild(divRecette);
+            }
+        });
+    }
+
+    // Fonction pour afficher les détails de la recette
+    function afficherPreparation(nomRecette) {
+        // Encodez le nom de la recette pour éviter les problèmes avec les caractères spéciaux dans l'URL
+        const encodedNomRecette = encodeURIComponent(nomRecette);
+        // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
+        window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
+    }
+</script>
+
 </body>
 </html>
