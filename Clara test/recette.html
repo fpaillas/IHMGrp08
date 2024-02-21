@@ -79,46 +79,22 @@
         container.appendChild(divRecette);
     });
 
-    // Afficher les recettes dans la page
-    const container = document.getElementById("recipeContainer");
-    recettes.forEach(recette => {
-        const divRecette = document.createElement("div");
-        divRecette.classList.add("recipe");
-        divRecette.innerHTML = `
-            <img src="${recette.image}" alt="${recette.nom}">
-            <h2>${recette.nom}</h2>
-            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-        `;
-        // Ajouter un gestionnaire d'événements de clic à chaque recette
-        divRecette.addEventListener('click', function() {
-            // Implémentez la logique pour afficher les détails de la recette ici
-            // Par exemple :
-            // afficherDetailsRecette(recette);
-            afficherPreparation(recette.nom);
-        });
-        container.appendChild(divRecette);
-    });
-    
-    // Fonction pour afficher les détails de la recette
-    function afficherPreparation(nomRecette) {
-        const encodedNomRecette = encodeURIComponent(nomRecette);
-        window.location.href = `details-recette.html?nomRecette=${encodedNomRecette}`;
-    }
-
-    // Fonction pour afficher toutes les recettes
-    function afficherToutesLesRecettes() {
+    // Fonction pour afficher les recettes en fonction de la catégorie
+    function afficherRecettes(categorie) {
         const container = document.getElementById("recipeContainer");
         container.innerHTML = '';
 
         recettes.forEach(recette => {
-            const divRecette = document.createElement("div");
-            divRecette.classList.add("recipe");
-            divRecette.innerHTML = `
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
-                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-            `;
-            container.appendChild(divRecette);
+            if (recette.categorie === categorie) {
+                const divRecette = document.createElement("div");
+                divRecette.classList.add("recipe");
+                divRecette.innerHTML = `
+                    <img src="${recette.image}" alt="${recette.nom}">
+                    <h2 onclick="afficherPreparation('${recette.nom}')">${recette.nom}</h2>
+                    <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+                `;
+                container.appendChild(divRecette);
+            }
         });
     }
 
