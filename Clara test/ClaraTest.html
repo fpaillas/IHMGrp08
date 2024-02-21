@@ -106,25 +106,22 @@
                     </a>
                 `;
                 container.appendChild(divRecette);
-            });
-        }
 
-        // Fonction pour rechercher des recettes
-        function rechercherRecettes() {
-            const recherche = document.getElementById('searchInput').value.toLowerCase();
-            const container = document.getElementById("recipeContainer");
-            container.innerHTML = '';
+
+    // Fonction pour afficher toutes les recettes
+    function afficherToutesLesRecettes() {
+        const container = document.getElementById("recipeContainer");
+        container.innerHTML = '';
+
 
             recettes.forEach(recette => {
                 if (recette.nom.toLowerCase().includes(recherche)) {
                     const divRecette = document.createElement("div");
                     divRecette.classList.add("recipe");
                     divRecette.innerHTML = `
-                        <a href="preparation-recette.html?nomRecette=${encodeURIComponent(recette.nom)}">
-                            <img src="${recette.image}" alt="${recette.nom}">
-                            <h2>${recette.nom}</h2>
-                            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-                        </a>
+                        <img src="${recette.image}" alt="${recette.nom}">
+                        <h2>${recette.nom}</h2>
+                        <p><strong>Catégorie:</strong> ${recette.categorie}</p>
                     `;
                     container.appendChild(divRecette);
                 }
