@@ -26,6 +26,7 @@
 <div id="filteredRecipes">
   <!-- Les recettes filtrées seront affichées ici -->
 </div>
+<button onclick="goBack()">Retour</button>
 
 <script>
   var recettes = [
@@ -108,6 +109,9 @@
       `;
       container.appendChild(divRecette);
     });
+  }
+  function goBack() {
+    window.history.back();
   }
 
   // Call filterRecipes function when the page loads

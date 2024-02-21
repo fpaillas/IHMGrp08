@@ -260,3 +260,7 @@ button:hover {
     overflow-x: visible;
     overflow-y: visible;
   }
+  label {
+    display: inline-block; /* Organiser les labels horizontalement */
+    margin-right: 10px; /* Marge entre les labels */
+  } 
