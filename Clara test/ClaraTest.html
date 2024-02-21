@@ -135,7 +135,7 @@
             const recettesTrouvees = recettes.filter(recette => recette.nom.toLowerCase().includes(recherche));
             
             if (recettesTrouvees.length === 0) {
-                recettesContainer.innerHTML = '<p>Aucune recette trouvée avec le critère de recherche fourni.</p>';
+                recettesContainer.innerHTML = '<p>Attention! acunne recette trouvé a ce nom, vouz pouvez essayer avec une autre recette.</p>';
             } else {
                 recettesTrouvees.forEach(recette => {
                     const recetteDiv = document.createElement('div');
