@@ -15,6 +15,20 @@
             display: block;
             margin-bottom: 5px;
         }
+
+        /* Style pour les boutons */
+        button {
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+
+        /* Ajout de styles pour le positionnement des boutons */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Aligner les boutons verticalement */
+            align-items: flex-end; /* Aligner les boutons à droite */
+            margin-top: 10px; /* Ajouter un espace entre les colonnes d'ingrédients et les boutons */
+        }
     </style>
 </head>
 <body>
@@ -114,10 +128,11 @@
         <label>
             <input type="checkbox" name="ingredients" value="vin blanc"> White wine
         </label>
-        
-        <button type="submit" value="Confirm Selection" >Confirm Selection</button>
-</form>
-<button onclick="retourPageAccueil()">Back to Home</button>
+        <div class="button-container">
+            <button type="submit" value="Confirm Selection">Confirm Selection</button>
+            <button type="button" onclick="retourPageAccueil()">Back to Home</button>
+        </div>
+    </form>
 <script>
     function retourPageAccueil() {
         // Redirect to the desired page
