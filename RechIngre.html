@@ -115,13 +115,13 @@
             <input type="checkbox" name="ingredients" value="vin blanc"> White wine
         </label>
         
-        <input type="submit" value="Confirm Selection">
+        <button type="submit" value="Confirm Selection" >Confirm Selection</button>
 </form>
 <button onclick="retourPageAccueil()">Back to Home</button>
 <script>
     function retourPageAccueil() {
         // Redirect to the desired page
-        window.location.href = "file:///C:/xampp/htdocs/Projet_annuel/IHMGrp08/main/main.html"
+        window.history.back();
     }
 </script>
 </body>
