@@ -15,7 +15,7 @@
       <div class="container">
         <h1 class="faq-header">Frequently asked questions</h1>
         <ul class="faq-list">
-<<<<<<< Updated upstream
+
             <li>
               <a href="javascript:void(0)" data-target="register">What is a cooking recipe and why do I need it?</a>
               <div id="register" class="answer">
@@ -68,23 +68,15 @@
           </div>
           </li>
           <li>
-=======
-            <li><a href="javascript:void(0)" data-target="register">What is a cooking recipe and why do I need it?</a></li>
-            <li><a href="javascript:void(0)" data-target="infoIncluded">What kind of information is included in EVENT'O?</a></li>
-            <li><a href="javascript:void(0)" data-target="sourceInfo">Can i choose what will be displayed?</a></li>
->>>>>>> Stashed changes
+
         </ul>
       </div>
    
-
-<!-- Button at the bottom to return to the homepage -->
-<div style="margin-top: 20px; text-align: center;">
-  <a href="#" class="homepage-button" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">Return to Homepage</a>
+  <button onclick="retourPageAccueil()">Retour à la page d'accueil</button>
 </div>
 
 
-<<<<<<< Updated upstream
-=======
+
       <div id="register" class="answer">
           <p>Firstly, a cooking recipe is a detailed guide that outlines the necessary ingredients, preparation and cooking steps, as well as specific quantities to create a flavorful dish.
 
@@ -108,14 +100,10 @@
             Techniques: Ensure that the required cooking techniques are familiar. If you're a beginner, opt for simple recipes that don't require advanced technical skills.
             Comments: Before you start, read comments and ratings from other cooks who have made the recipe. This will give you an idea of any potential difficulties encountered by others.
             By following these tips, you can choose recipes suited to your cooking skill level and gradually progress to more complex preparations as you gain confidence in the kitchen.</p>
-      </div>
-      <div id="infoIncluded" class="answer">
-          <p>EVENT'O provides detailed data on receips, including the .........................</p>
-      </div>
+      
       <div id="sourceInfo" class="answer">
           <p>Yes, of course you have the choice to display what you want to see exactely</p>
       </div>
->>>>>>> Stashed changes
 
 <script>
 
@@ -131,6 +119,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+// Fonction pour retourner à la page d'accueil
+function retourPageAccueil() {
+            window.location.href = "main.html";
+        }
 
 </script>
 
