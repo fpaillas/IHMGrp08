@@ -288,3 +288,33 @@ button:hover {
 .search-bar input[type="text"]:focus {
   border-color: dodgerblue;
 }
+
+
+/* Style des éléments de résultat de la recherche */
+.search-result-item {
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+.search-result-item a {
+  display: flex;
+  text-decoration: none;
+  color: #333;
+}
+
+.search-result-item img {
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.recipe-details h2 {
+  margin: 0;
+}
+
+.recipe-details p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
