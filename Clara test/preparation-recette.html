@@ -116,18 +116,23 @@
                 <h3>Preparation:</h3>
                 <p class="preparation-step">${recipe.preparation.split('\n')[index]}</p>
             `;
+            
         if (index === 0) {
             document.getElementById('previousStep').style.display = 'none';
         } else {
             document.getElementById('previousStep').style.display = 'inline';
         }
+        
         if (index === recipe.preparation.split('\n').length - 1) {
             document.getElementById('nextStep').style.display = 'none';
             document.getElementById('finishButton').style.display = 'inline';
+            document.getElementById('previousStep').style.display = 'inline'; // Masquer le bouton back to previous page
         } else {
             document.getElementById('nextStep').style.display = 'inline';
             document.getElementById('finishButton').style.display = 'none';
+            document.getElementById('previousStep').style.display = 'inline'; // Afficher le bouton back to previous page pour toutes les autres étapes
         }
+
 
         // Update the progress bar
         const progressElement = document.getElementById('progress');
@@ -152,7 +157,7 @@
 
     // Function to finish the preparation and return to the main page
     function finish() {
-        window.location.href = "main.html";
+        window.location.href = "../main/main.html";
     }
 </script>
 </body>
