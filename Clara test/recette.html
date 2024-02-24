@@ -3,86 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recettes</title>
+    <title>Recipes</title>
     <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
-    <!----------------- entête haut de page ----------------->
+    <!----------------- Header Section ----------------->
     <iframe src="../header/header.html" frameborder="0"></iframe>
-    <!----------------- entête haut de page ----------------->
-    <h1>Recettes</h1>
+    <!----------------- Header Section ----------------->
+    <h1>Recipes</h1>
 
     <div class="container" id="recipeContainer">
-        <!-- Les recettes seront affichées ici -->
+        <!-- Recipes will be displayed here -->
     </div>
 
     <script>
-        const recettes = [
+        const recipes = [
             {
-                "nom": "Pizza Margherita",
-                "categorie": "Pizza",
+                "name": "Margherita Pizza",
+                "category": "Pizza",
                 "image": "Claraimg/pizzaM.jpeg",
-                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
-                "preparation": "Préparation de la pizza Margherita : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer la mozzarella et les feuilles de basilic. Enfourner pendant 15-20 minutes."
+                "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "basil"],
+                "preparation": "Preparation of Margherita Pizza: Preheat the oven to 220°C. Roll out the pizza dough on a baking sheet. Spread the tomato sauce over the dough. Arrange the mozzarella and basil leaves. Bake for 15-20 minutes."
             },
             {
-                "nom": "Pizza Quatre Fromages",
-                "categorie": "Pizza",
+                "name": "Four Cheese Pizza",
+                "category": "Pizza",
                 "image": "Claraimg/pizza_quatre_fromages.jpeg",
-                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
-                "preparation": "Préparation de la pizza Quatre Fromages : Préchauffer le four à 220°C. Étaler la pâte à pizza sur une plaque. Étaler la sauce tomate sur la pâte. Disposer les différents fromages et saupoudrer d'origan. Enfourner pendant 15-20 minutes."
+                "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "gorgonzola", "emmental", "parmesan", "oregano"],
+                "preparation": "Preparation of Four Cheese Pizza: Preheat the oven to 220°C. Roll out the pizza dough on a baking sheet. Spread the tomato sauce over the dough. Add the different cheeses and sprinkle with oregano. Bake for 15-20 minutes."
             },
             {
-                "nom": "Pâtes Carbonara",
-                "categorie": "Pâtes",
+                "name": "Spaghetti Carbonara",
+                "category": "Pasta",
                 "image": "Claraimg/carbonara.jpeg",
-                "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
-                "preparation": "Préparation des pâtes Carbonara : Cuire les pâtes dans de l'eau bouillante salée. Dans une poêle, faire revenir le guanciale. Battre les œufs avec le parmesan et le poivre. Égoutter les pâtes et les mélanger avec le guanciale. Hors du feu, ajouter le mélange d'œufs et de parmesan. Servir immédiatement."
+                "ingredients": ["spaghetti", "eggs", "guanciale", "parmesan", "pepper"],
+                "preparation": "Preparation of Spaghetti Carbonara: Cook the spaghetti in boiling salted water. In a pan, fry the guanciale. Beat the eggs with parmesan and pepper. Drain the pasta and mix with the guanciale. Off the heat, add the egg and parmesan mixture. Serve immediately."
             },
             {
-                "nom": "Risotto aux Champignons",
-                "categorie": "Riz",
+                "name": "Mushroom Risotto",
+                "category": "Rice",
                 "image": "Claraimg/rissotoC.jpeg",
-                "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
-                "preparation": "Préparation du risotto aux Champignons : Faire chauffer le bouillon de poulet. Faire revenir l'oignon dans un peu d'huile. Ajouter le riz et le vin blanc, laisser absorber. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. Ajouter les champignons et le parmesan. Servir chaud."
+                "ingredients": ["rice", "mushrooms", "chicken broth", "onion", "white wine", "parmesan"],
+                "preparation": "Preparation of Mushroom Risotto: Heat the chicken broth. Fry the onion in a little oil. Add the rice and white wine, let it absorb. Gradually add the hot broth, stirring regularly, until the rice is cooked. Add the mushrooms and parmesan. Serve hot."
             },
             {
-                "nom": "Lasagnes",
-                "categorie": "Pâtes",
+                "name": "Lasagna",
+                "category": "Pasta",
                 "image": "Claraimg/lasagnes.jpeg",
-                "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
-                "preparation": "Préparation des lasagnes : Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter la viande hachée et la faire cuire. Ajouter la sauce tomate et laisser mijoter. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. Terminer par une couche de fromage râpé. Enfourner à 180°C pendant 30-40 minutes."
+                "ingredients": ["lasagna sheets", "ground beef", "tomato sauce", "béchamel sauce", "grated cheese", "onion", "garlic", "olive oil", "salt", "pepper"],
+                "preparation": "Preparation of Lasagna: Fry the onion and garlic in olive oil. Add the ground beef and cook. Add the tomato sauce and simmer. In a dish, alternate layers of lasagna sheets, meat sauce, and béchamel sauce. Finish with a layer of grated cheese. Bake at 180°C for 30-40 minutes."
             },
             {
-                "nom": "Riz au Poulet et Légumes",
-                "categorie": "Riz",
+                "name": "Chicken and Vegetable Rice",
+                "category": "Rice",
                 "image": "Claraimg/riz_poulet_legumes.jpeg",
-                "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
-                "preparation": "Préparation du riz au Poulet et Légumes : Faire cuire le riz dans le bouillon de poulet. Faire revenir l'oignon et l'ail dans l'huile d'olive. Ajouter les morceaux de poulet et les légumes coupés en dés. Assaisonner avec le curry en poudre, le sel et le poivre. Ajouter le riz cuit et mélanger. Servir chaud."
+                "ingredients": ["rice", "chicken breast", "bell peppers", "peas", "carrots", "onion", "garlic", "chicken broth", "olive oil", "salt", "pepper", "curry powder"],
+                "preparation": "Preparation of Chicken and Vegetable Rice: Cook the rice in chicken broth. Fry the onion and garlic in olive oil. Add the pieces of chicken and diced vegetables. Season with curry powder, salt, and pepper. Add the cooked rice and mix. Serve hot."
             }
         ];
 
-        // Afficher les recettes dans la page
+        // Display recipes on the page
         const container = document.getElementById("recipeContainer");
-        recettes.forEach(recette => {
-            const divRecette = document.createElement("div");
-            divRecette.classList.add("recipe");
-            divRecette.innerHTML = `
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h2>${recette.nom}</h2>
-                <p><strong>Catégorie:</strong> ${recette.categorie}</p>
+        recipes.forEach(recipe => {
+            const divRecipe = document.createElement("div");
+            divRecipe.classList.add("recipe");
+            divRecipe.innerHTML = `
+                <img src="${recipe.image}" alt="${recipe.name}">
+                <h2>${recipe.name}</h2>
+                <p><strong>Category:</strong> ${recipe.category}</p>
             `;
-            // Ajouter un gestionnaire d'événements de clic à chaque recette
-            divRecette.addEventListener('click', function() {
-                afficherDetailsRecette(recette);
+            // Add a click event handler to each recipe
+            divRecipe.addEventListener('click', function() {
+                displayRecipeDetails(recipe);
             });
-            container.appendChild(divRecette);
+            container.appendChild(divRecipe);
         });
 
-        // Fonction pour afficher les détails de la recette
-        function afficherDetailsRecette(recette) {
-            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `details-recette.html?nomRecette=${encodeURIComponent(recette.nom)}`;
+        // Function to display recipe details
+        function displayRecipeDetails(recipe) {
+            // Redirect the user to the recipe details page with the recipe name as a query parameter
+            window.location.href = `details-recette.html?recipeName=${encodeURIComponent(recipe.name)}`;
         }
     </script>
 

@@ -3,95 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recettes</title>
+    <title>Recipes</title>
     <link rel="stylesheet" type="text/css" href="../design.css">
 </head>
 <body>
-    <!----------------- entête haut de page ----------------->
+    <!-- Header Section -->
     <iframe src="../header/header.html" frameborder="0"></iframe>
-    <!----------------- entête haut de page ----------------->
+    <!-- Header Section -->
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
+        <input type="text" id="searchInput" placeholder="Search for a recipe..." oninput="searchRecipes()">
     </div>  
 
     <div id="recipeContainer"></div>
 
     <script>
-        const recettes = [
-            {
-                "nom": "Pizza Margherita",
-                "categorie": "Pizza",
-                "image": "Claraimg/pizzaM.jpeg",
-                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
-                "preparation": "Préparation de la pizza Margherita : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer la mozzarella et les feuilles de basilic. \n5. Enfourner pendant 15-20 minutes."
-            },
-            {
-                "nom": "Pizza Quatre Fromages",
-                "categorie": "Pizza",
-                "image": "Claraimg/pizza_quatre_fromages.jpeg",
-                "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
-                "preparation": "Préparation de la pizza Quatre Fromages : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer les différents fromages et saupoudrer d'origan. \n5. Enfourner pendant 15-20 minutes."
-            },
-            {
-                "nom": "Pâtes Carbonara",
-                "categorie": "Pâtes",
-                "image": "Claraimg/carbonara.jpeg",
-                "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
-                "preparation": "Préparation des pâtes Carbonara : \n1. Cuire les pâtes dans de l'eau bouillante salée. \n2. Dans une poêle, faire revenir le guanciale. \n3. Battre les œufs avec le parmesan et le poivre. \n4. Égoutter les pâtes et les mélanger avec le guanciale. \n5. Hors du feu, ajouter le mélange d'œufs et de parmesan. \n6. Servir immédiatement."
-            },
-            {
-                "nom": "Risotto aux Champignons",
-                "categorie": "Riz",
-                "image": "Claraimg/rissotoC.jpeg",
-                "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
-                "preparation": "Préparation du risotto aux Champignons : \n1. Faire chauffer le bouillon de poulet. \n2. Faire revenir l'oignon dans un peu d'huile. \n3. Ajouter le riz et le vin blanc, laisser absorber. \n4. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. \n5. Ajouter les champignons et le parmesan. \n6. Servir chaud."
-            },
-            {
-                "nom": "Lasagnes",
-                "categorie": "Pâtes",
-                "image": "Claraimg/lasagnes.jpeg",
-                "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
-                "preparation": "Préparation des lasagnes : \n1. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n2. Ajouter la viande hachée et la faire cuire. \n3. Ajouter la sauce tomate et laisser mijoter. \n4. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. \n5. Terminer par une couche de fromage râpé. \n6. Enfourner à 180°C pendant 30-40 minutes."
-            },
-            {
-                "nom": "Riz au Poulet et Légumes",
-                "categorie": "Riz",
-                "image": "Claraimg/riz_poulet_legumes.jpeg",
-                "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
-                "preparation": "Préparation du riz au Poulet et Légumes : \n1. Faire cuire le riz dans le bouillon de poulet. \n2. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n3. Ajouter les morceaux de poulet et les légumes coupés en dés. \n4. Assaisonner avec le curry en poudre, le sel et le poivre. \n5. Ajouter le riz cuit et mélanger. \n6. Servir chaud."
-            }
-        ];
+       const recipes = [
+    {
+        "name": "Margherita Pizza",
+        "category": "Pizza",
+        "image": "Claraimg/pizzaM.jpeg",
+        "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "basil"],
+        "preparation": "Preparation of Margherita Pizza: \n1. Preheat the oven to 220°C. \n2. Roll out the pizza dough on a baking sheet. \n3. Spread the tomato sauce over the dough. \n4. Arrange the mozzarella and basil leaves. \n5. Bake for 15-20 minutes."
+    },
+    {
+        "name": "Four Cheese Pizza",
+        "category": "Pizza",
+        "image": "Claraimg/pizza_quatre_fromages.jpeg",
+        "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "gorgonzola", "emmental", "parmesan", "oregano"],
+        "preparation": "Preparation of Four Cheese Pizza: \n1. Preheat the oven to 220°C. \n2. Roll out the pizza dough on a baking sheet. \n3. Spread the tomato sauce over the dough. \n4. Add the different cheeses and sprinkle with oregano. \n5. Bake for 15-20 minutes."
+    },
+    {
+        "name": "Spaghetti Carbonara",
+        "category": "Pasta",
+        "image": "Claraimg/carbonara.jpeg",
+        "ingredients": ["spaghetti", "eggs", "guanciale", "parmesan", "pepper"],
+        "preparation": "Preparation of Spaghetti Carbonara: \n1. Cook the spaghetti in boiling salted water. \n2. In a pan, fry the guanciale. \n3. Beat the eggs with parmesan and pepper. \n4. Drain the pasta and mix with the guanciale. \n5. Off the heat, add the egg and parmesan mixture. \n6. Serve immediately."
+    },
+    {
+        "name": "Mushroom Risotto",
+        "category": "Rice",
+        "image": "Claraimg/rissotoC.jpeg",
+        "ingredients": ["rice", "mushrooms", "chicken broth", "onion", "white wine", "parmesan"],
+        "preparation": "Preparation of Mushroom Risotto: \n1. Heat the chicken broth. \n2. Fry the onion in a little oil. \n3. Add the rice and white wine, let it absorb. \n4. Gradually add the hot broth, stirring regularly, until the rice is cooked. \n5. Add the mushrooms and parmesan. \n6. Serve hot."
+    },
+    {
+        "name": "Lasagna",
+        "category": "Pasta",
+        "image": "Claraimg/lasagnes.jpeg",
+        "ingredients": ["lasagna sheets", "ground beef", "tomato sauce", "béchamel sauce", "grated cheese", "onion", "garlic", "olive oil", "salt", "pepper"],
+        "preparation": "Preparation of Lasagna: \n1. Fry the onion and garlic in olive oil. \n2. Add the ground beef and cook. \n3. Add the tomato sauce and simmer. \n4. In a dish, alternate layers of lasagna sheets, meat sauce, and béchamel sauce. \n5. Finish with a layer of grated cheese. \n6. Bake at 180°C for 30-40 minutes."
+    },
+    {
+        "name": "Chicken and Vegetable Rice",
+        "category": "Rice",
+        "image": "Claraimg/riz_poulet_legumes.jpeg",
+        "ingredients": ["rice", "chicken breast", "bell peppers", "peas", "carrots", "onion", "garlic", "chicken broth", "olive oil", "salt", "pepper", "curry powder"],
+        "preparation": "Preparation of Chicken and Vegetable Rice: \n1. Cook the rice in chicken broth. \n2. Fry the onion and garlic in olive oil. \n3. Add the pieces of chicken and diced vegetables. \n4. Season with curry powder, salt, and pepper. \n5. Add the cooked rice and mix. \n6. Serve hot."
+    }
+];
 
-        // Fonction pour rechercher des recettes
-        function rechercherRecettes() {
-            const recherche = document.getElementById('searchInput').value.toLowerCase();
+        // Function to search for recipes
+        function searchRecipes() {
             const container = document.getElementById("recipeContainer");
             container.innerHTML = '';
 
-            recettes.forEach(recette => {
-                if (recette.nom.toLowerCase().includes(recherche)) {
-                    const divRecette = document.createElement("div");
-                    divRecette.classList.add("recipe");
-                    divRecette.innerHTML = `
-                        <a href="preparation-recette.html?nomRecette=${encodeURIComponent(recette.nom)}">
-                            <img src="${recette.image}" alt="${recette.nom}">
-                            <h2>${recette.nom}</h2>
-                            <p><strong>Catégorie:</strong> ${recette.categorie}</p>
-                        </a>
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            recipes.forEach(recipe => {
+                if (recipe.name.toLowerCase().includes(searchInput) || recipe.category.toLowerCase().includes(searchInput)) {
+                    const divRecipe = document.createElement("div");
+                    divRecipe.classList.add("recipe");
+                    divRecipe.innerHTML = `
+                        <img src="${recipe.image}" alt="${recipe.name}">
+                        <h2>${recipe.name}</h2>
+                        <p><strong>Catégorie:</strong> ${recipe.category}</p>
                     `;
-                    // Ajouter un gestionnaire d'événements de clic à chaque recette
-                    divRecette.addEventListener('click', function() {
-                        afficherDetailsRecette(recette);
+                    // Add a click event handler to each recipe
+                    divRecipe.addEventListener('click', function() {
+                        showRecipeDetails(recipe);
                     });
-                    container.appendChild(divRecette);
+                    container.appendChild(divRecipe);
                 }
             });
         }
 
-        // Fonction pour afficher les détails de la recette
-        function afficherDetailsRecette(recette) {
-            // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `details-recette.html?nomRecette=${encodeURIComponent(recette.nom)}`;
+        // Function to display recipe details
+        function showRecipeDetails(recipe) {
+            // Redirect the user to the recipe details page with the recipe name as a query parameter
+            window.location.href = `details-recette.html?recipeName=${encodeURIComponent(recipe.name)}`;
         }
     </script>
 

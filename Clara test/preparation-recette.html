@@ -3,133 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Préparation de la recette</title>
+    <title>Recipe Preparation</title>
     <link rel="stylesheet" type="text/css" href="../design.css">
+    <style>
+        .progress-bar {
+            width: 100%;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            height: 30px;
+            background-color: #4caf50;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .preparation-step {
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-    <!----------------- entête haut de page ----------------->
-    <iframe src="../header/header.html" frameborder="0"></iframe>
-    <!----------------- entête haut de page ----------------->
-    <h1>Préparation de la recette</h1>
+<!----------------- Header Section ----------------->
+<iframe src="../header/header.html" frameborder="0"></iframe>
+<!----------------- Header Section ----------------->
+<h1>Recipe Preparation</h1>
 
-    <div id="preparation-recette"></div>
+<div id="recipe-preparation"></div>
+<div class="progress-bar">
+    <div class="progress" id="progress">0%</div>
+</div>
 
-    <button onclick="retourPageAccueil()">Retour à la page d'accueil</button>
-    <button onclick="etapePrecedente()">Étape précédente</button>
-    <button onclick="etapeSuivante()">Étape suivante</button>
-    <button onclick="terminer()" id="boutonTerminer" style="display: none;">Terminé</button>
+<button onclick="window.history.go(-2)">Back to Previous Page</button>
+<button onclick="previousStep()" id="previousStep" style="display: none;">Previous Step</button>
+<button onclick="nextStep()" id="nextStep" style="display: none;">Next Step</button>
+<button onclick="finish()" id="finishButton" style="display: none;">Finish</button>
 
-    <script>
-            const recettes = [
-        {
-            "nom": "Pizza Margherita",
-            "categorie": "Pizza",
-            "image": "Claraimg/pizzaM.jpeg",
-            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "basilic"],
-            "preparation": "Préparation de la pizza Margherita : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer la mozzarella et les feuilles de basilic. \n5. Enfourner pendant 15-20 minutes."
-        },
-        {
-            "nom": "Pizza Quatre Fromages",
-            "categorie": "Pizza",
-            "image": "Claraimg/pizza_quatre_fromages.jpeg",
-            "ingredients": ["pâte à pizza", "sauce tomate", "mozzarella", "gorgonzola", "emmental", "parmesan", "origan"],
-            "preparation": "Préparation de la pizza Quatre Fromages : \n1. Préchauffer le four à 220°C. \n2. Étaler la pâte à pizza sur une plaque. \n3. Étaler la sauce tomate sur la pâte. \n4. Disposer les différents fromages et saupoudrer d'origan. \n5. Enfourner pendant 15-20 minutes."
-        },
-        {
-            "nom": "Pâtes Carbonara",
-            "categorie": "Pâtes",
-            "image": "Claraimg/carbonara.jpeg",
-            "ingredients": ["spaghetti", "œufs", "guanciale", "parmesan", "poivre"],
-            "preparation": "Préparation des pâtes Carbonara : \n1. Cuire les pâtes dans de l'eau bouillante salée. \n2. Dans une poêle, faire revenir le guanciale. \n3. Battre les œufs avec le parmesan et le poivre. \n4. Égoutter les pâtes et les mélanger avec le guanciale. \n5. Hors du feu, ajouter le mélange d'œufs et de parmesan. \n6. Servir immédiatement."
-        },
-        {
-            "nom": "Risotto aux Champignons",
-            "categorie": "Riz",
-            "image": "Claraimg/rissotoC.jpeg",
-            "ingredients": ["riz", "champignons", "bouillon de poulet", "oignon", "vin blanc", "parmesan"],
-            "preparation": "Préparation du risotto aux Champignons : \n1. Faire chauffer le bouillon de poulet. \n2. Faire revenir l'oignon dans un peu d'huile. \n3. Ajouter le riz et le vin blanc, laisser absorber. \n4. Ajouter progressivement le bouillon chaud, en remuant régulièrement, jusqu'à cuisson du riz. \n5. Ajouter les champignons et le parmesan. \n6. Servir chaud."
-        },
-        {
-            "nom": "Lasagnes",
-            "categorie": "Pâtes",
-            "image": "Claraimg/lasagnes.jpeg",
-            "ingredients": ["pâte a lasagnes", "viande hachée", "sauce tomate", "béchamel", "fromage râpé", "oignon", "ail", "huile d'olive", "sel", "poivre"],
-            "preparation": "Préparation des lasagnes : \n1. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n2. Ajouter la viande hachée et la faire cuire. \n3. Ajouter la sauce tomate et laisser mijoter. \n4. Dans un plat, alterner les couches de pâte à lasagnes, de viande sauce tomate et de béchamel. \n5. Terminer par une couche de fromage râpé. \n6. Enfourner à 180°C pendant 30-40 minutes."
-        },
-        {
-            "nom": "Riz au Poulet et Légumes",
-            "categorie": "Riz",
-            "image": "Claraimg/riz_poulet_legumes.jpeg",
-            "ingredients": ["riz", "filet de poulet", "poivrons", "petits pois", "carottes", "oignon", "ail", "bouillon de poulet", "huile d'olive", "sel", "poivre", "curry en poudre"],
-            "preparation": "Préparation du riz au Poulet et Légumes : \n1. Faire cuire le riz dans le bouillon de poulet. \n2. Faire revenir l'oignon et l'ail dans l'huile d'olive. \n3. Ajouter les morceaux de poulet et les légumes coupés en dés. \n4. Assaisonner avec le curry en poudre, le sel et le poivre. \n5. Ajouter le riz cuit et mélanger. \n6. Servir chaud."
-        }
-    ];
+<script>
+    const recipes = [
+    {
+        "name": "Margherita Pizza",
+        "category": "Pizza",
+        "image": "Claraimg/pizzaM.jpeg",
+        "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "basil"],
+        "preparation": "Preparation of Margherita Pizza: \n1. Preheat the oven to 220°C. \n2. Roll out the pizza dough on a baking sheet. \n3. Spread the tomato sauce over the dough. \n4. Arrange the mozzarella and basil leaves. \n5. Bake for 15-20 minutes."
+    },
+    {
+        "name": "Four Cheese Pizza",
+        "category": "Pizza",
+        "image": "Claraimg/pizza_quatre_fromages.jpeg",
+        "ingredients": ["pizza dough", "tomato sauce", "mozzarella", "gorgonzola", "emmental", "parmesan", "oregano"],
+        "preparation": "Preparation of Four Cheese Pizza: \n1. Preheat the oven to 220°C. \n2. Roll out the pizza dough on a baking sheet. \n3. Spread the tomato sauce over the dough. \n4. Add the different cheeses and sprinkle with oregano. \n5. Bake for 15-20 minutes."
+    },
+    {
+        "name": "Spaghetti Carbonara",
+        "category": "Pasta",
+        "image": "Claraimg/carbonara.jpeg",
+        "ingredients": ["spaghetti", "eggs", "guanciale", "parmesan", "pepper"],
+        "preparation": "Preparation of Spaghetti Carbonara: \n1. Cook the spaghetti in boiling salted water. \n2. In a pan, fry the guanciale. \n3. Beat the eggs with parmesan and pepper. \n4. Drain the pasta and mix with the guanciale. \n5. Off the heat, add the egg and parmesan mixture. \n6. Serve immediately."
+    },
+    {
+        "name": "Mushroom Risotto",
+        "category": "Rice",
+        "image": "Claraimg/rissotoC.jpeg",
+        "ingredients": ["rice", "mushrooms", "chicken broth", "onion", "white wine", "parmesan"],
+        "preparation": "Preparation of Mushroom Risotto: \n1. Heat the chicken broth. \n2. Fry the onion in a little oil. \n3. Add the rice and white wine, let it absorb. \n4. Gradually add the hot broth, stirring regularly, until the rice is cooked. \n5. Add the mushrooms and parmesan. \n6. Serve hot."
+    },
+    {
+        "name": "Lasagna",
+        "category": "Pasta",
+        "image": "Claraimg/lasagnes.jpeg",
+        "ingredients": ["lasagna sheets", "ground beef", "tomato sauce", "béchamel sauce", "grated cheese", "onion", "garlic", "olive oil", "salt", "pepper"],
+        "preparation": "Preparation of Lasagna: \n1. Fry the onion and garlic in olive oil. \n2. Add the ground beef and cook. \n3. Add the tomato sauce and simmer. \n4. In a dish, alternate layers of lasagna sheets, meat sauce, and béchamel sauce. \n5. Finish with a layer of grated cheese. \n6. Bake at 180°C for 30-40 minutes."
+    },
+    {
+        "name": "Chicken and Vegetable Rice",
+        "category": "Rice",
+        "image": "Claraimg/riz_poulet_legumes.jpeg",
+        "ingredients": ["rice", "chicken breast", "bell peppers", "peas", "carrots", "onion", "garlic", "chicken broth", "olive oil", "salt", "pepper", "curry powder"],
+        "preparation": "Preparation of Chicken and Vegetable Rice: \n1. Cook the rice in chicken broth. \n2. Fry the onion and garlic in olive oil. \n3. Add the pieces of chicken and diced vegetables. \n4. Season with curry powder, salt, and pepper. \n5. Add the cooked rice and mix. \n6. Serve hot."
+    }
+];
 
-// Récupérer le nom de la recette à partir de l'URL
-const params = new URLSearchParams(window.location.search);
-        const nomRecette = params.get('nomRecette');
 
-        // Recherche de la recette par son nom
-        const recette = recettes.find(r => r.nom === nomRecette);
+    // Get the recipe name from the URL
+    const params = new URLSearchParams(window.location.search);
+    const recipeName = params.get('recipeName');
 
-        // Index de l'étape actuelle
-        let currentStepIndex = 0;
+    // Find the recipe by its name
+    const recipe = recipes.find(r => r.name === recipeName);
 
-        // Affichage de la première étape de préparation
-        if (recette) {
-            afficherEtape(currentStepIndex);
-        }
+    // Index of the current step
+    let currentStepIndex = 0;
 
-        // Fonction pour afficher une étape de préparation
-        function afficherEtape(index) {
-            const preparationRecette = document.getElementById('preparation-recette');
-            preparationRecette.innerHTML = `
-                <h2>${recette.nom}</h2>
-                <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Préparation :</h3>
-                <p>${recette.preparation.split('\n')[index]}</p>
+    // Display the first preparation step
+    if (recipe) {
+        displayStep(currentStepIndex);
+    }
+
+    // Function to display a preparation step
+    function displayStep(index) {
+        const recipePreparation = document.getElementById('recipe-preparation');
+        recipePreparation.innerHTML = `
+                <h2>${recipe.name}</h2>
+                <img src="${recipe.image}" alt="${recipe.name}">
+                <h3>Preparation:</h3>
+                <p class="preparation-step">${recipe.preparation.split('\n')[index]}</p>
             `;
-            if (index === 0) {
-                document.getElementById('etapePrecedente').style.display = 'none';
-            } else {
-                document.getElementById('etapePrecedente').style.display = 'inline';
-            }
-            if (index === recette.preparation.split('\n').length - 1) {
-                document.getElementById('etapeSuivante').style.display = 'none';
-                document.getElementById('boutonTerminer').style.display = 'inline';
-            } else {
-                document.getElementById('etapeSuivante').style.display = 'inline';
-                document.getElementById('boutonTerminer').style.display = 'none';
-            }
+        if (index === 0) {
+            document.getElementById('previousStep').style.display = 'none';
+        } else {
+            document.getElementById('previousStep').style.display = 'inline';
+        }
+        if (index === recipe.preparation.split('\n').length - 1) {
+            document.getElementById('nextStep').style.display = 'none';
+            document.getElementById('finishButton').style.display = 'inline';
+        } else {
+            document.getElementById('nextStep').style.display = 'inline';
+            document.getElementById('finishButton').style.display = 'none';
         }
 
+        // Update the progress bar
+        const progressElement = document.getElementById('progress');
+        const totalSteps = recipe.preparation.split('\n').length - 1;
+        const stepPercentage = 100 / totalSteps;
+        const progress = stepPercentage * index;
+        progressElement.style.width = `${progress}%`;
+        progressElement.textContent = `${progress.toFixed(0)}%`;
+    }
 
-        // Fonction pour passer à l'étape suivante
-        function etapeSuivante() {
-            currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('\n').length - 1);
-            afficherEtape(currentStepIndex);
-        }
+    // Function to move to the next step
+    function nextStep() {
+        currentStepIndex = Math.min(currentStepIndex + 1, recipe.preparation.split('\n').length - 1);
+        displayStep(currentStepIndex);
+    }
 
-        // Fonction pour revenir à l'étape précédente
-        function etapePrecedente() {
-            currentStepIndex = Math.max(currentStepIndex - 1, 0);
-            afficherEtape(currentStepIndex);
-        }
+    // Function to move to the previous step
+    function previousStep() {
+        currentStepIndex = Math.max(currentStepIndex - 1, 0);
+        displayStep(currentStepIndex);
+    }
 
-        // Fonction pour terminer la préparation et revenir à la page principale
-        function terminer() {
-            window.location.href = "ClaraTest.html";
-        }
-
-        // Fonction pour retourner à la page d'accueil
-        function retourPageAccueil() {
-        // Affiche un message d'alerte et demande confirmation avant de naviguer
-        const confirmation = confirm("Êtes-vous sûr de vouloir retourner à la page d'accueil ? Avez-vous bien validé toutes les étapes ?");
-        if (confirmation) {
-        // Si l'utilisateur confirme, alors navigue vers la page précédente
-        window.history.back();
-        }
-}
-    </script>
+    // Function to finish the preparation and return to the main page
+    function finish() {
+        window.location.href = "main.html";
+    }
+</script>
 </body>
 </html>
