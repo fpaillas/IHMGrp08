@@ -10,9 +10,7 @@
     <!-- entête haut de page -->
     <iframe src="../header/header.html" frameborder="0"></iframe>
     <!-- entête haut de page -->
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Rechercher une recette..." oninput="rechercherRecettes()">
-    </div>
+
 
     <div class="menu">
         <button onclick="afficherRecettes('Pizza')">Pizza</button>
@@ -102,7 +100,7 @@
                     const divRecette = document.createElement("div");
                     divRecette.classList.add("recipe");
                     divRecette.innerHTML = `
-                        <a href="preparation-recette.html?nomRecette=${encodeURIComponent(recette.name)}">
+                        <a href="preparation-recette.html?recipireName=${encodeURIComponent(recette.name)}">
                             <img src="${recette.image}" alt="${recette.name}">
                             <h2>${recette.name}</h2>
                             <p><strong>Catégorie:</strong> ${recette.category}</p>
@@ -120,7 +118,7 @@
         // Fonction pour afficher les détails de la recette
         function afficherDetailsRecette(recette) {
             // Rediriger l'utilisateur vers la page des détails de la recette avec le nom de la recette en tant que paramètre de requête
-            window.location.href = `details-recette.html?nomRecette=${encodeURIComponent(recette.name)}`;
+            window.location.href = `details-recette.html?recipeName=${encodeURIComponent(recette.name)}`;
         }
     </script>
 
