@@ -13,9 +13,10 @@
     <h1>Recipe Details</h1>
 
     <div id="details-recette"></div>
-    
-    <button onclick="retourPageAccueil()">Back</button>
+
+    <!-- <button onclick="retourPageAccueil()">Back</button> -->
     <button onclick="commencerPreparation()">Start the preparation</button>
+    
 
     <script>
         const recettes = [
@@ -83,16 +84,21 @@
             `;
         }
 
+        // Fonction pour retourner à la page d'accueil
+        function retourPageAccueil() {
+            window.history.back();
+        }
+
         // Fonction pour commencer la préparation
         function commencerPreparation() {
             // Rediriger l'utilisateur vers la page de préparation avec le nom de la recette en tant que paramètre de requête
             window.location.href = `preparation-recette.html?nomRecette=${encodeURIComponent(nomRecette)}`;
         }
 
-        // Fonction pour retourner à la page d'accueil
-        function retourPageAccueil() {
-            window.history.back();
-        }
+        
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>
