@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Préparation de la recette</title>
-    <link rel="stylesheet" type="text/css" href="../design.css">
+    <title>Détails de la recette</title>
+    <link rel="stylesheet" type="text/css" href="../../design.css">
 </head>
 <body>
     <!----------------- entête haut de page ----------------->
-    <iframe src="../header/header.html" frameborder="0"></iframe>
+    <iframe src="/header/header.html" frameborder="0"></iframe>
     <!----------------- entête haut de page ----------------->
-    <h1>Recipe Preparation</h1>
+    <h1>Recipe Details</h1>
 
-    <div id="preparation-recette"></div>
+    <div id="details-recette"></div>
 
-    <button onclick="retourPageAccueil()">Back</button>
-    <button onclick="etapePrecedente()">Previous Step</button>
-    <button onclick="etapeSuivante()">Next Step</button>
-    <button onclick="terminer()" id="boutonTerminer" style="display: none;">Finished</button>
+    <!-- <button onclick="retourPageAccueil()">Back</button> -->
+    <button onclick="commencerPreparation()">Start the preparation</button>
+    
 
     <script>
-            const recettes = [
+        const recettes = [
     {
         "nom": "Margherita Pizza",
         "categorie": "Pizza",
@@ -64,71 +63,42 @@
         "preparation": "Chicken and Vegetable Rice Preparation: \n1. Cook the rice in chicken broth. \n2. Sauté the onion and garlic in olive oil. \n3. Add the pieces of chicken and the diced vegetables. \n4. Season with curry powder, salt, and pepper. \n5. Add the cooked rice and mix. \n6. Serve hot."
     }];
 
-// Récupérer le nom de la recette à partir de l'URL
-const params = new URLSearchParams(window.location.search);
+
+        // Récupérer le nom de la recette à partir de l'URL
+        const params = new URLSearchParams(window.location.search);
         const nomRecette = params.get('nomRecette');
 
         // Recherche de la recette par son nom
         const recette = recettes.find(r => r.nom === nomRecette);
 
-        // Index de l'étape actuelle
-        let currentStepIndex = 0;
-
-        // Affichage de la première étape de préparation
+        // Affichage des détails de la recette
         if (recette) {
-            afficherEtape(currentStepIndex);
-        }
-
-        // Fonction pour afficher une étape de préparation
-        function afficherEtape(index) {
-            const preparationRecette = document.getElementById('preparation-recette');
-            preparationRecette.innerHTML = `
+            const detailsRecette = document.getElementById('details-recette');
+            detailsRecette.innerHTML = `
                 <h2>${recette.nom}</h2>
                 <img src="${recette.image}" alt="${recette.nom}">
-                <h3>Préparation :</h3>
-                <p>${recette.preparation.split('\n')[index]}</p>
+                <h3>Ingrédients :</h3>
+                <ul>
+                    ${recette.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                </ul>
             `;
-            if (index === 0) {
-                document.getElementById('etapePrecedente').style.display = 'none';
-            } else {
-                document.getElementById('etapePrecedente').style.display = 'inline';
-            }
-            if (index === recette.preparation.split('\n').length - 1) {
-                document.getElementById('etapeSuivante').style.display = 'none';
-                document.getElementById('boutonTerminer').style.display = 'inline';
-            } else {
-                document.getElementById('etapeSuivante').style.display = 'inline';
-                document.getElementById('boutonTerminer').style.display = 'none';
-            }
-        }
-
-
-        // Fonction pour passer à l'étape suivante
-        function etapeSuivante() {
-            currentStepIndex = Math.min(currentStepIndex + 1, recette.preparation.split('\n').length - 1);
-            afficherEtape(currentStepIndex);
-        }
-
-        // Fonction pour revenir à l'étape précédente
-        function etapePrecedente() {
-            currentStepIndex = Math.max(currentStepIndex - 1, 0);
-            afficherEtape(currentStepIndex);
-        }
-
-        // Fonction pour terminer la préparation et revenir à la page principale
-        function terminer() {
-            window.location.href = "ClaraTest.html";
         }
 
         // Fonction pour retourner à la page d'accueil
         function retourPageAccueil() {
-        // Affiche un message d'alerte et demande confirmation avant de naviguer
-        const confirmation = confirm("Are you sure you want to return to the home page? Have you validated all the steps?");
-        if (confirmation) {
-        // Si l'utilisateur confirme, alors navigue vers la page précédente
-        window.history.back();
+            window.history.back();
         }
-}
+
+        // Fonction pour commencer la préparation
+        function commencerPreparation() {
+            // Rediriger l'utilisateur vers la page de préparation avec le nom de la recette en tant que paramètre de requête
+            window.location.href = `preparation-recette.html?nomRecette=${encodeURIComponent(nomRecette)}`;
+        }
+
+        
+    </script>
+</body>
+</html>
     </script>
 </body>
 </html>

@@ -5,113 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select your ingredients</title>
     <link rel="stylesheet" type="text/css" href="../design.css"/>
+    <style>
+        /* Ajoutez du CSS pour créer plusieurs colonnes */
+        form {
+            column-count: 7;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Style pour les boutons */
+        button {
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+
+        /* Ajout de styles pour le positionnement des boutons */
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Aligner les boutons verticalement */
+            align-items: flex-end; /* Aligner les boutons à droite */
+            margin-top: 10px; /* Ajouter un espace entre les colonnes d'ingrédients et les boutons */
+        }
+    </style>
 </head>
 <body>
 <!----------------- entête haut de page ----------------->
 <iframe src="../header/header.html" frameborder="0"></iframe>
 <h2>Select your ingredients :</h2>
 
-<form action="ResultRechIngre.html" method="get">
-    <!-- Use method "post" to include selected ingredients in the form data -->
-    <label>
-        <input type="checkbox" name="ingredients" value="pâte à pizza"> Pate à pizza
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="sauce tomate"> Sauce tomate
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="mozzarella"> Mozzarella
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="gorgonzola"> Gorgonzola
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="emmental"> Emmental
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="basilic"> Basilic
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="spaghetti"> Spaghetti
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="origan"> Origan
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="œufs"> Oeufs
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="guanciale"> Guanciale
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="parmesan"> Parmesan
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="poivre"> Poivre
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="riz"> Riz
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="champignons"> Champignons
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="bouillon de poulet"> Bouillon de poulet
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="oignon"> Oignon
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="vin blanc"> Vin blanc
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="pâte a lasagnes"> Pâte à lasagnes
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="viande hachée"> Viande hachée
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="sauce tomate"> Sauce tomate
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="béchamel"> Béchamel
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="fromage râpé"> Fromage râpé
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="ail"> Ail
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="huile d'olive"> Huile d'olive
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="sel"> Sel
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="filet de poulet"> Filet de poulet
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="poivrons"> Poivron
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="petits pois"> Petits pois
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="carottes"> Carottes
-    </label>
-    <label>
-        <input type="checkbox" name="ingredients" value="curry en poudre"> Curry en poudre
-    </label>
-  
-    <!-- Add other ingredient checkboxes as needed -->
-    <button onclick="retourPageAccueil()">Retour</button>
-    <input type="submit" value="Valider la sélection">
-</form>
+    <form action="ResultRechIngre.html" method="get">
+        <!-- Use method "post" to include selected ingredients in the form data -->
+        <label>
+            <input type="checkbox" name="ingredients" value="basilic"> Basil
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="béchamel"> Bechamel
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="poivrons"> Bell peppers
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="carottes"> Carrots
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="bouillon de poulet"> Chicken broth
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="filet de poulet"> Chicken fillet
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="curry en poudre"> Curry powder
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="œufs"> Eggs
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="emmental"> Emmental
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="ail"> Garlic
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="gorgonzola"> Gorgonzola
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="fromage râpé"> Grated cheese
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="viande hachée"> Ground beef
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="guanciale"> Guanciale
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="pâte à lasagnes"> Lasagna sheets
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="mozzarella"> Mozzarella
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="champignons"> Mushrooms
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="huile d'olive"> Olive oil
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="oignon"> Onion
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="origan"> Oregano
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="parmesan"> Parmesan
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="poivron"> Paprika
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="petits pois"> Peas
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="poivre"> Pepper
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="pâte à pizza"> Pizza dough
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="riz"> Rice
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="sel"> Salt
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="spaghetti"> Spaghetti
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="sauce tomate"> Tomato sauce
+        </label>
+        <label>
+            <input type="checkbox" name="ingredients" value="vin blanc"> White wine
+        </label>
+        <div class="button-container">
+            <button type="submit" value="Confirm Selection">Confirm Selection</button>
+            <button type="button" onclick="retourPageAccueil()">Back to Home</button>
+        </div>
+    </form>
 <script>
     function retourPageAccueil() {
         // Redirect to the desired page
-        window.location.href = 'file:///C:/xampp/htdocs/Projet_annuel/IHMGrp08/main/main.html';
+        window.history.back();
     }
 </script>
 </body>
